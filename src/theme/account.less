@@ -1,0 +1,81 @@
+.panel-stat {
+  overflow: hidden;
+  height: 80px;
+  margin: 10px 0;
+  width: 180px;
+  background: white;
+}
+
+.panel-stat-left {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  float: left;
+
+  i {
+    color: white;
+    padding: 25px 30px;
+    font-size: 2em;
+  }
+}
+
+.panel-stat-right {
+  width: 50%;
+  float: right;
+  height: 100%;
+}
+
+.stat {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.stat-text {
+  text-align: center;
+}
+
+.second-row-panel {
+  background: white;
+  margin-top: 30px;
+  padding: 20px;
+  @media (max-width: @screen-sm) {
+    width: 95%;
+  }
+}
+
+.mg-15-left-sm {
+  @media (max-width: @screen-sm) {
+    margin-left: 15px;
+  }
+}
+
+.user-selection-icon {
+  width: 100%;
+  text-align: center;
+  font-size: 60px;
+  color: white;
+  padding: 20px 10px;
+}
+
+.user-selection-label {
+  border: 1px solid @gray-lighter;
+  padding: 10px;
+  text-align: center;
+  font-weight: bolder;
+  color: @gray;
+  overflow-x: hidden;
+}
+
+.hidden-400 {
+  @media (max-width: 400px) {
+    display: none !important;
+  }
+}
+
+.visible-400 {
+  @media (min-width: 401px) {
+    display: none !important;
+  }
+}

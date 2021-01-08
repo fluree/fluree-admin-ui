@@ -1,0 +1,165 @@
+.navbar-side {
+  background: @gray;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: auto;
+  left: 0;
+  z-index: 1000;
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  > .container,
+  > .container-fluid {
+    .navbar-brand {
+      margin-left: 0;
+      height: 80px;
+      cursor: pointer;
+    }
+  }
+
+  > .container,
+  > .container-fluid {
+    padding: 0px;
+  }
+
+  > .container,
+  > .container-fluid > .navbar-nav > li {
+    width: 100%;
+    > a:hover {
+      background: @gray-light;
+    }
+  }
+
+  > .container,
+  > .container-fluid > .navbar-nav > li > a > span > span > .dropdown {
+    float: right;
+    line-height: 19px;
+    text-shadow: 2px 2px #080808f7;
+  }
+
+  .nav-show-md {
+    color: white;
+    padding: 32.5px 15.5px;
+    width: 100%;
+  }
+
+  .menu-item {
+    padding-left: 10px;
+  }
+
+  @media (min-width: @screen-md) {
+    width: 16.66667%;
+    max-width: 200px;
+
+    .nav-show-md {
+      display: none;
+    }
+  }
+
+  @media (max-width: @screen-md) {
+    .nav-hide-md {
+      display: none;
+    }
+  }
+
+  .toggle-button {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: @screen-md) {
+  .toggled-open-sidebar {
+    width: 200px !important;
+  }
+
+  .untoggled-closed-sidebar {
+    width: 60px !important;
+  }
+}
+
+// Style account info circle and override default navbar-open settings
+.navbar-default .navbar-nav > .account-icon {
+  @media (max-width: 400px) {
+    display: none;
+  }
+
+  > a,
+  > a:visited,
+  > a:focus,
+  > a:active {
+    background: @brand-primary;
+    text-transform: capitalize;
+    margin: 10px 0;
+    border-radius: 100%;
+    font-weight: bolder;
+    color: white !important;
+    max-width: 58px;
+  }
+  > a:hover {
+    background: @brand-primary !important;
+    color: @link-hover-color !important;
+  }
+
+  > ul > li > a,
+  > ul > li > a:visited,
+  > ul > li > a:active {
+    color: @brand-primary !important;
+
+    font-weight: normal !important;
+  }
+  > ul > li > a:hover {
+    color: @link-hover-color !important;
+  }
+}
+
+.header {
+  border-bottom: 1px solid #8888880d;
+
+  > .container > .navbar-nav > .docs {
+    > a {
+      color: @gray-light;
+    }
+    > a:hover {
+      color: @gray-darker;
+    }
+    margin: 10px 30px 10px 0;
+  }
+
+  @media (min-width: @screen-md) {
+    .nav-show-md {
+      display: none;
+    }
+  }
+
+  @media (max-width: @screen-sm) {
+    .nav-show-md {
+      padding-left: 100px;
+    }
+  }
+
+  @media (min-width: @screen-sm) {
+    .nav-show-md {
+      padding-left: 70px;
+    }
+  }
+
+  // White background disappears in screens smaller than 200px
+  @media (max-width: 250px) {
+    background: whitesmoke;
+  }
+}

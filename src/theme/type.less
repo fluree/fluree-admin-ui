@@ -1,0 +1,290 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("open-sans/regular.eot");
+  src: url("open-sans/regular.eot#iefix") format("embedded-opentype"),
+    url("open-sans/regular.ttf") format("truetype"),
+    url("open-sans/regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans Light";
+  src: url("open-sans/light.eot");
+  src: url("open-sans/light.eot#iefix") format("embedded-opentype"),
+    url("open-sans/light.ttf") format("truetype"),
+    url("open-sans/light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans Italic";
+  src: url("open-sans/italic.eot");
+  src: url("open-sans/italic.eot#iefix") format("embedded-opentype"),
+    url("open-sans/italic.ttf") format("truetype"),
+    url("open-sans/italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans Bold";
+  src: url("open-sans/bold.eot");
+  src: url("open-sans/bold.eot#iefix") format("embedded-opentype"),
+    url("open-sans/bold.ttf") format("truetype"),
+    url("open-sans/bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans Bold Italic";
+  src: url("open-sans/bold-italic.eot");
+  src: url("open-sans/bold-italic.eot#iefix") format("embedded-opentype"),
+    url("open-sans/bold-italic.ttf") format("truetype"),
+    url("open-sans/bold-italic.woff") format("woff");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans Bold", sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+h1.light,
+h2.light,
+h3.light,
+h4.light,
+h5.light,
+h6.light {
+  font-family: "Open Sans Light", sans-serif;
+}
+
+h1.regular,
+h2.regular,
+h3.regular,
+h4.regular,
+h5.regular,
+h6.regular {
+  font-family: "Open Sans", sans-serif;
+}
+
+em h1,
+h1 em,
+em h2,
+h2 em,
+em h3,
+h3 em,
+em h4,
+h4 em,
+em h5,
+h5 em,
+em h6,
+h6 em {
+  font-family: "Open Sans Bold Italic", sans-serif;
+}
+
+.micro,
+.prose .micro,
+.prose.micro {
+  font-size: 10px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+.strong,
+strong {
+  font-family: "Open Sans Bold", sans-serif;
+  font-weight: normal;
+}
+strong em,
+em strong {
+  font-family: "Open Sans Bold Italic", sans-serif;
+}
+
+address,
+em {
+  font-family: "Open Sans Italic", sans-serif;
+}
+
+.prose {
+  line-height: 25px;
+}
+.prose section {
+  margin-bottom: 20px;
+}
+
+.title,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose p,
+.prose ul,
+.prose ol,
+.prose img,
+.prose blockquote,
+.prose pre,
+.prose iframe,
+.prose object,
+.prose figure,
+.prose div.highlight {
+  display: block;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+.prose h2 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.prose h1,
+.prose h2 {
+  padding-top: 40px;
+}
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  padding-top: 20px;
+}
+.prose h1:first-child,
+.prose h2:first-child,
+.prose h3:first-child,
+.prose h4:first-child,
+.prose h5:first-child,
+.prose h6:first-child {
+  padding-top: 0;
+}
+.prose blockquote {
+  padding: 20px;
+  margin: 0 0 20px 0;
+  background-color: #f8f8f8;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.prose blockquote p:last-child {
+  margin: 0;
+}
+.prose p > video,
+.prose p > iframe,
+.prose p a > iframe,
+.prose p > img,
+.prose p a > img,
+.prose li > video,
+.prose li > iframe,
+.prose li a > iframe,
+.prose li > img,
+.prose li a > img {
+  max-width: 100%;
+  max-height: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table.prose,
+.prose table {
+  border: 1px solid #ddd;
+}
+table.prose th,
+table.prose td,
+.prose table th,
+.prose table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+table.prose th,
+.prose table th {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.prose ul {
+  list-style: disc;
+  margin-left: 40px;
+}
+.prose ol {
+  list-style: decimal;
+  margin-left: 40px;
+}
+.prose ul li,
+.prose ol li {
+  margin-bottom: 10px;
+}
+
+/* Dark read content styling */
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3 {
+  color: #fff;
+}
+
+h1.small,
+h2.small,
+h3.small,
+h4.small,
+h5.small,
+h6.small,
+h1.micro,
+h2.micro,
+h3.micro,
+h4.micro,
+h5.micro,
+h6.micro {
+  text-transform: uppercase;
+}
+
+.prose h1:last-child,
+.prose h2:last-child,
+.prose h3:last-child,
+.prose h4:last-child,
+.prose h5:last-child,
+.prose h6:last-child,
+.prose p:last-child,
+.prose ul:last-child,
+.prose ol:last-child,
+.prose ul li:last-child,
+.prose ol li:last-child,
+.prose img:last-child,
+.prose blockquote:last-child,
+.prose pre:last-child,
+.prose figure:last-child,
+.prose iframe:last-child,
+.prose object:last-child {
+  margin-bottom: 0;
+}
+
+.prose-big,
+.prose-big h3,
+.prose-big h4,
+.prose-big h5,
+.prose-big h6 {
+  font-size: 18px;
+  line-height: 30px;
+}
+.prose-big .small,
+.prose-big small {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+// .shadow-on-hover:hover {
+//   box-shadow: 0 2px 8px 2px rgba(0,0,0,.1);
+//   transform: translateY(-3px);
+
+.color-primary {
+  color: @brand-primary;
+}
+
+.color-success {
+  color: @brand-success;
+}
+
+.color-info {
+  color: @brand-info;
+}
+
+.color-warning {
+  color: @brand-warning;
+}
+
+.color-danger {
+  color: @brand-danger;
+}

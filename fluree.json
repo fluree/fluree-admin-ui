@@ -1,0 +1,10 @@
+{
+  "organization": "fluree",
+  "application": "admin",
+  "version": "2",
+
+  "doc": "User interface for the admin dashboard",
+  "url": "https://flur.ee",
+
+  "route": { "path": "/admin" }
+}
