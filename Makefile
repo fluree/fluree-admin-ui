@@ -3,7 +3,6 @@ SOURCES := $(shell find src)
 .PHONY: run clean
 
 build: node_modules $(SOURCES) 
-	rm -rf build
 	npm run build
 
 run: build
