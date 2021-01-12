@@ -152,16 +152,14 @@ class Sidebar extends React.Component {
                             : "menu-item"
                         }
                       >
-                        {this.props._db.environment === "downloaded" //edit for open-source
-                          ? db
-                          : db.split("/")[1]}
+                        {db}
                       </span>
                     </span>
                   </span>
                 }
                 id="database-dropdown"
               >
-                <MenuItem header>Select Database:</MenuItem>
+                <MenuItem header>Select Ledger:</MenuItem>
                 {dbs.map((db) => (
                   <MenuItem
                     onClick={this.toggleClose}
@@ -169,9 +167,7 @@ class Sidebar extends React.Component {
                     key={db}
                     value={db}
                   >
-                    {this.props._db.environment === "downloaded"
-                      ? db
-                      : db.split("/")[1]}
+                    {db}
                   </MenuItem>
                 ))}
               </NavDropdown>
@@ -179,53 +175,6 @@ class Sidebar extends React.Component {
               <li>
                 <hr className="border-top-solid-gray" />
               </li>
-              {/* <NavItem> */}
-              {/* <NavDropdown
-                onClick={this.toggleOpen}
-                title={
-                  <span>
-                    <span>
-                      <i
-                        className="fas fa-search menu-symbol"
-                        aria-hidden="true"
-                      ></i>
-                      <span
-                        className={
-                          !this.state.toggleOpen
-                            ? "nav-hide-md menu-item"
-                            : "menu-item"
-                        }
-                      >
-                        {queryLanguage}
-                      </span>
-                    </span>
-                   // { <span
-                   //         className={!this.state.toggleOpen ? "nav-hide-md" : null}
-                    //>
-                           // <i className="fas fa-caret-down dropdown" />
-                    //</span> }
-                  </span>
-                }
-                //	noCaret
-                id="database-dropdown"
-              >
-                <MenuItem header>Select Query Language:</MenuItem>
-                {["FlureeQL", "SPARQL", "GraphQL", "SQL"].map((language) => {
-                  return (
-                    <LinkContainer to={`/${language.toLowerCase()}`}>
-                      <MenuItem
-                        onClick={this.toggleClose}
-                        eventKey={{ language: language }}
-                        key={language}
-                        value={language}
-                      >
-                        {language}
-                      </MenuItem>
-                    </LinkContainer>
-                  );
-                })}
-              </NavDropdown> */}
-              {/* </NavItem> */}
 
               <DropdownButton
                 id="queryButton"
