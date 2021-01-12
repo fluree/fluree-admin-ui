@@ -9,13 +9,12 @@ export class History extends React.Component {
 
   render() {
     const { history, loadHistoryItem, styles, historyType } = this.props;
-    
+
     const historyHeight = this.props.height;
     const panelHeader = <span>History</span>;
     const arrayOfHistoryToDisplay = history.filter((item) => {
       return item.action === historyType;
     });
-    
 
     return (
       <div
