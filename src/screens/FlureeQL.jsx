@@ -68,7 +68,7 @@ class FlureeQL extends React.Component {
 
   componentDidMount() {
     let newState = this.getParamsFromProps(this.props);
-  
+
     //let { action, txParam, queryParam } = this.checkURLAndOverrideParam();
 
     const historyOpenStatus = JSON.parse(localStorage.getItem("historyOpen"));
@@ -197,7 +197,9 @@ class FlureeQL extends React.Component {
       history: history,
       action: "query",
     };
-    newState["queryParam"] = lastItem ? lastItem.param : '{"select":["*"],"from":"_collection"}';
+    newState["queryParam"] = lastItem
+      ? lastItem.param
+      : '{"select":["*"],"from":"_collection"}';
     return newState;
   }
 
@@ -270,7 +272,7 @@ class FlureeQL extends React.Component {
           null,
           2
         );
-     
+
         const newHistory = pushHistory(
           db,
           history,
@@ -437,9 +439,8 @@ class FlureeQL extends React.Component {
       newState[feature] = !featureState;
       this.setState(newState);
     } else {
-    
       let featureState = !get(this.state, feature);
-     
+
       let newState = {};
       newState[feature] = featureState;
       this.setState(newState);
@@ -622,20 +623,18 @@ class FlureeQL extends React.Component {
             >
               Prettify
             </Button>
-            {!this.props._db.openApiServer && (
-              <Button
-                className="fluree-rounded-button"
-                style={{
-                  display: "inline-block",
-                  marginLeft: "0px",
-                  padding: "9px, 12px",
-                }}
-                bsSize="small"
-                onClick={() => this.toggleFeature("sign")}
-              >
-                Sign
-              </Button>
-            )}
+            <Button
+              className="fluree-rounded-button"
+              style={{
+                display: "inline-block",
+                marginLeft: "0px",
+                padding: "9px, 12px",
+              }}
+              bsSize="small"
+              onClick={() => this.toggleFeature("sign")}
+            >
+              Sign
+            </Button>
           </div>
           <div className="fluree-pageb-button-wrapper-center">
             <FormGroup style={{ display: "inline-block", marginBottom: "0" }}>

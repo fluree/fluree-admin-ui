@@ -152,7 +152,6 @@ class Transact extends React.Component {
       history: history,
       action: "transact",
     };
-   ;
     newState["txParam"] = lastItem.param
       ? lastItem.param
       : '[{"_id":"_user","username":"newUser"}]';
@@ -417,20 +416,18 @@ class Transact extends React.Component {
             >
               Prettify
             </Button>
-            {!this.props._db.openApiServer && (
-              <Button
-                className="fluree-rounded-button"
-                style={{
-                  display: "inline-block",
-                  marginLeft: "0px",
-                  padding: "9px, 12px",
-                }}
-                bsSize="small"
-                onClick={() => this.toggleFeature("sign")}
-              >
-                Sign
-              </Button>
-            )}
+            <Button
+              className="fluree-rounded-button"
+              style={{
+                display: "inline-block",
+                marginLeft: "0px",
+                padding: "9px, 12px",
+              }}
+              bsSize="small"
+              onClick={() => this.toggleFeature("sign")}
+            >
+              Sign
+            </Button>
           </div>
           <div className="fluree-page-button-wrapper-right">
             {this.state.sign ? null : (
