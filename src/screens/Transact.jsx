@@ -31,7 +31,6 @@ export class Editor extends React.Component {
     const valueKey = this.props.valueKey;
 
     this.props.changeState(valueKey, newValue);
-    
   }
 
   render() {
@@ -71,14 +70,13 @@ class Transact extends React.Component {
 
     //let { action, txParam, queryParam } = this.checkURLAndOverrideParam();
 
-    
-    const historyOpenStatus = JSON.parse(localStorage.getItem("historyOpenForTransact"));
+    const historyOpenStatus = JSON.parse(
+      localStorage.getItem("historyOpenForTransact")
+    );
 
     newState["historyOpen"] = historyOpenStatus ? true : false;
 
     this.setState(newState);
-    
-   
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -116,8 +114,6 @@ class Transact extends React.Component {
     );
   }
 
- 
-
   checkURLAndOverrideParam() {
     const searchparam = new URLSearchParams(window.location.search);
     let action, txParam, queryParam;
@@ -138,19 +134,17 @@ class Transact extends React.Component {
   }
 
   getParamsFromProps(props) {
-    
     let sign = props._db.openApiServer ? false : true;
-  
+
     const privateKey = props._db.defaultPrivateKey || "";
     const host = getHost(props._db.ip) || "";
     const history = loadHistory(props._db.db, "flureeQL", "transact") || [];
-   // const lastItem = getLastHistory(history) || {};
-    //const action = lastItem.action || "query";
-  //  const privateKey = props._db.defaultPrivateKey || "";
-  //  const host = getHost(props._db.ip) || "";
-  //  const history = loadHistory(props._db.db, "flureeQL", "query") || [];
+    // const privateKey = props._db.defaultPrivateKey || "";
 
-  //  const lastItem = getLastHistory(history) || {};
+    const arrayOfTransactHistory = history.filter((item) => {
+      return item.action === "transact";
+    });
+    const lastItem = getLastHistory(arrayOfTransactHistory) || {};
     const newState = {
       sign: sign,
       host: host,
@@ -158,13 +152,13 @@ class Transact extends React.Component {
       history: history,
       action: "transact",
     };
-
-    newState["txParam"] = '[{"_id":"_user","username":"newUser"}]'
+   ;
+    newState["txParam"] = lastItem.param
+      ? lastItem.param
+      : '[{"_id":"_user","username":"newUser"}]';
 
     return newState;
   }
-
-  
 
   updateDimensions() {
     this.setState({});
@@ -263,7 +257,7 @@ class Transact extends React.Component {
 
   invoke = () => {
     let { action, txParam, history, queryType } = this.state;
-    
+
     const param = txParam;
     let endpoint = action;
 
@@ -277,7 +271,6 @@ class Transact extends React.Component {
         ? "Values greater than 5k are not saved in the admin UI."
         : txParam;
 
-    
     localStorage.setItem(db.concat("_txParam"), txParamStore);
     localStorage.setItem(db.concat("_lastAction"), this.state.action);
     localStorage.setItem(
@@ -303,7 +296,6 @@ class Transact extends React.Component {
     let newState = {
       action: item.action,
       queryParam: item.action === "query" ? item.param : this.state.queryParam,
-   
     };
 
     if (item.type) {
@@ -313,13 +305,14 @@ class Transact extends React.Component {
     this.setState(newState);
   }
 
-  
-
   toggleFeature = (feature) => {
     if (feature === "historyOpenForTransact") {
       const currentHistoryState = JSON.parse(localStorage.getItem(feature));
       let featureState = currentHistoryState;
-      localStorage.setItem("historyOpenForTransact", JSON.stringify(!featureState));
+      localStorage.setItem(
+        "historyOpenForTransact",
+        JSON.stringify(!featureState)
+      );
       let newState = {};
       newState["historyOpen"] = !featureState;
       this.setState(newState);
@@ -330,8 +323,6 @@ class Transact extends React.Component {
       this.setState(newState);
     }
   };
-
-  
 
   pushHistorySigned = (signedTxParam, resp) => {
     const newHistory = pushHistory(
@@ -360,8 +351,6 @@ class Transact extends React.Component {
       }
     }
   }
-
-
 
   render() {
     const windowWidth = window.innerWidth;
@@ -444,7 +433,6 @@ class Transact extends React.Component {
             )}
           </div>
           <div className="fluree-page-button-wrapper-right">
-           
             {this.state.sign ? null : (
               <Button
                 style={{
@@ -494,7 +482,7 @@ class Transact extends React.Component {
                   this.pushHistorySigned(signedTxParam, resp)
                 }
               />
-            ) : 
+            ) : (
               <div style={{ position: "relative", height: `${availHeight}px` }}>
                 <SplitPane
                   split="vertical"
@@ -608,7 +596,7 @@ class Transact extends React.Component {
                   </div>
                 </SplitPane>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>

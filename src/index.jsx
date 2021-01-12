@@ -91,7 +91,6 @@ class Wrapper extends React.Component {
         newState["account"] = "Fluree";
         
         this.setState(newState);
-        console.log(this.state);
       })
       .catch((error) => {
         this.displayError(error);

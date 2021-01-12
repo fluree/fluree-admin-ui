@@ -71,8 +71,6 @@ class FlureeQL extends React.Component {
   
     //let { action, txParam, queryParam } = this.checkURLAndOverrideParam();
 
-   
-
     const historyOpenStatus = JSON.parse(localStorage.getItem("historyOpen"));
 
     newState["historyOpen"] = historyOpenStatus ? true : false;
@@ -187,10 +185,11 @@ class FlureeQL extends React.Component {
     let sign = props._db.openApiServer ? false : true;
     const privateKey = props._db.defaultPrivateKey || "";
     const host = getHost(props._db.ip) || "";
-    const history = loadHistory(props._db.db, "flureeQL", "query") || [];
-   
-    //const lastItem = getLastHistory(history) || {};
-
+    const history = loadHistory(props._db.db, "flureeQL") || [];
+    const arrayOfQueryHistory = history.filter((item) => {
+      return item.action === "query";
+    });
+    const lastItem = getLastHistory(arrayOfQueryHistory) || [];
     const newState = {
       sign: sign,
       host: host,
@@ -198,9 +197,7 @@ class FlureeQL extends React.Component {
       history: history,
       action: "query",
     };
-
-    newState["queryParam"] = '{"select":["*"],"from":"_collection"}';
-
+    newState["queryParam"] = lastItem ? lastItem.param : '{"select":["*"],"from":"_collection"}';
     return newState;
   }
 
@@ -313,8 +310,6 @@ class FlureeQL extends React.Component {
 
     this.setState({ loading: true });
   };
-
-  
 
   invoke = () => {
     let { action, queryParam, txParam, history, queryType } = this.state;
