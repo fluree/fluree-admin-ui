@@ -132,7 +132,7 @@ class Sidebar extends React.Component {
                         : "menu-item account-link"
                     }
                   >
-                    Account Info
+                    Dashboard
                   </span>
                 </NavItem>
               </LinkContainer>
