@@ -291,11 +291,12 @@ class Transact extends React.Component {
     this.handleResponse(res, action, db, history, param, queryType);
   };
 
-  loadHistoryItem(item) {
-    let newState = {
-      action: item.action,
-      queryParam: item.action === "query" ? item.param : this.state.queryParam,
-    };
+  
+    loadHistoryItem(item) {
+      let newState = {
+        action: item.action,
+        txParam: item.action === "transact" ? item.param : this.state.txParam,
+      };
 
     if (item.type) {
       newState["queryType"] = item.type;
