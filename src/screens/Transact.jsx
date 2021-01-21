@@ -362,7 +362,7 @@ class Transact extends React.Component {
 
     const param = this.state.txParam;
     const isLoading = this.state.loading || this.props._db.loading;
-
+    
     return (
       <div style={{ width: "100%" }}>
         {this.state.generateKeysModal ? (
