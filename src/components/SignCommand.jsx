@@ -30,7 +30,7 @@ class SignCommand extends React.Component {
   };
 
   componentDidMount() {
-    const { ip, db, openApi, defaultPrivateKey, token } = this.props._db;
+    const { ip, db, openApiServer, defaultPrivateKey, token } = this.props._db;
     const param = this.props.param;
     const fullDb = db.split("/");
 
@@ -42,7 +42,7 @@ class SignCommand extends React.Component {
 
     let queryPromise;
 
-    if (openApi) {
+    if (openApiServer) {
       const qOpts = {
         endpoint: "query",
         ip: ip,
@@ -116,7 +116,7 @@ class SignCommand extends React.Component {
       ip,
       db,
       displayError,
-      openApi,
+      openApiServer,
       defaultPrivateKey,
       token,
     } = this.props._db;
@@ -151,7 +151,7 @@ class SignCommand extends React.Component {
         resp = resp.result || resp;
         this.props.pushHistory(tx, resp);
         const param = { select: ["*"], from: ["_tx/id", resp] };
-        if (openApi) {
+        if (openApiServer) {
           const qOpenOpts = {
             ip: ip,
             network: fullDb[0],

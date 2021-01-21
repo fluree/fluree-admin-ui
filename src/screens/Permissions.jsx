@@ -128,9 +128,6 @@ class PermissionExplorer extends Component {
     if (this.state.error) {
       return <div />;
     }
-    if (this.state.error) {
-      return <div />;
-    }
 
     if (
       !this.state._user ||
