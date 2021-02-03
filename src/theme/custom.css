@@ -536,9 +536,11 @@ div.ace_gutter-layer {
 }
 
 div.Pane.vertical.Pane1 {
-  max-width: 88%;
-  min-width: 4%;
+  max-width: 82%;
+  min-width: 10%;
 }
+
+
 
 /* *{
 	border: 1px solid red;

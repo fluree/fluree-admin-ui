@@ -698,7 +698,7 @@ class FlureeQL extends React.Component {
                 minSize="50%"
                 defaultSize="50%"
                 resizerStyle={{
-                  width: "9px",
+                  width: "16px",
                   cursor: "col-resize",
                   height: `${availHeight}px`,
                 }}
@@ -748,6 +748,7 @@ class FlureeQL extends React.Component {
                     width: "100%",
                     padding: "0",
                     height: "100%",
+                    borderRadius: "10px",
                     backgroundColor: "#fff",
 
                     padding: "20px",
