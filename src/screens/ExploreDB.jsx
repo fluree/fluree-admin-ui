@@ -215,7 +215,7 @@ export default class ExploreDB extends Component {
           const collections = res.collections;
 
           const predicates = res.predicates;
-          const predicatesHeader = ["Name", "Type", "Unique", "Index", "Multi"];
+          const predicatesHeader = ["Name", "Type", "Unique", "Index","Full Text", "Multi"];
           const collectionsHeader = ["Name"];
 
           const collectionsWithMoreInfo = collections
@@ -252,6 +252,7 @@ export default class ExploreDB extends Component {
                   ).toString(),
                   multi: get(predicate, "_predicate/multi", "false").toString(),
                   index: get(predicate, "_predicate/index", "false").toString(),
+                  fulltext: get(predicate, "_predicate/fullText", "false").toString(),
                 };
                 return predicateTx;
               }
@@ -671,6 +672,7 @@ export default class ExploreDB extends Component {
           <td>{predicateData.type}</td>
           <td>{predicateData.unique}</td>
           <td>{predicateData.index}</td>
+          <td>{predicateData.fulltext}</td>
           <td>{predicateData.multi}</td>
         </tr>
       );
