@@ -18,9 +18,6 @@ class Sidebar extends React.Component {
 
   handleSelect(selected) {
     selected = selected || {};
-    if (selected === "docs") {
-      window.open("https://docs.flur.ee/", "_blank");
-    }
     if (selected.db) {
       this.props._db.changeDatabase(selected.db);
     }
