@@ -1,5 +1,5 @@
 {
-  "name": "fluree-admin-ui",
+  "name": "@fluree/admin-ui",
   "version": "1.0.0-rc1",
   "private": false,
   "proxy": "http://localhost",
