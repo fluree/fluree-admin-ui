@@ -11,6 +11,9 @@ run: build
 node_modules: package.json package-lock.json
 	npm install && touch node_modules
 
+deploy: package.json $(SOURCES)
+	npm publish
+
 clean:
 	rm -rf build
 	rm -rf node_modules
