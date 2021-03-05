@@ -340,8 +340,8 @@ a {
 }
 nav .navbar-nav {
   text-align: left;
-  padding-right: 10px;
-  padding-left: 15px;
+  /* padding-right: 10px; */
+  /* padding-left: 15px; */
 }
 .account-icon > a {
   color: #13c6ff;
@@ -368,18 +368,33 @@ a#basic-nav-dropdown.dropdown-toggle {
 }
 #navbar-side {
   position: absolute;
-  height: 100%;
+  /* height: 100vh; */
   top: 0;
   bottom: 0;
-  overflow-y: scroll;
-  overflow-x: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
   /* left: 0; */
   /* z-index: 1000; */
-  padding-top: 10px;
+  /* padding-top: 10px; */
   color: #fff;
   margin-bottom: 0px;
   max-width: 220px;
 }
+
+#sidebar-wrapper {
+  height: 100%;
+}
+#sidebar-wrapper.sidebar-collapse-width {
+  width:10%;
+  max-width: 80px;
+}
+
+#siderbar-wrapper.sidebar-non-collapse-width {
+  width: 17%;
+  /* max-width: 200px;  */
+}
+
+
 
 .navbar-side {
   background-color: #091133;
@@ -397,10 +412,14 @@ a#basic-nav-dropdown.dropdown-toggle {
 .navbar-side .nav-show-md {
   color: #fff;
 }
-@media (max-width: 992px) {
-  .untoggled-closed-sidebar {
-    width: 100% !important;
+@media (min-width: 992px) {
+  #sidebar-wrapper.sidebar-non-collapse-width {
+    width: 20% !important;
   }
+}
+
+.navbar-side .nav-hide {
+  display: none;
 }
 /*** page container  ****/
 .container-fluid {
@@ -411,20 +430,33 @@ a#basic-nav-dropdown.dropdown-toggle {
 #main-content-wrapper {
   background-color: #f1fafe;
   align-items: center;
-  height: 100vh;
-  margin-left: 20%;
+  height: 100%;
+  /* height: 100vh !important; */
+  /* margin-left: 20%; */
   margin-right: 0px;
   overflow-y: auto;
-  min-height: 850px;
+ 
+  /* min-height: 850px; */
   padding-right: 20px 5%;
   color: #091133;
 }
 
-@media (max-width: 992px) {
-  #main-content-wrapper {
-    margin-left: 70px;
-  }
+/* sidebar collapse margin left */
+
+#main-content-wrapper.sidebar-collapse-main-content-width {
+  width: 90%;
 }
+
+#main-content-wrapper.sidebar-non-collapse-main-content-width {
+  width: 80%;
+}
+
+
+/* @media (max-width: 992px) {
+  #main-content-wrapper {
+    margin-left: 100px;
+  }
+} */
 /******* BUTTONS ********/
 
 .buttonPurple {

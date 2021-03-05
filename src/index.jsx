@@ -32,7 +32,9 @@ const Permissions = asyncComponent(() => import("./screens/Permissions"));
 const Import = asyncComponent(() => import("./screens/Import"));
 
 class Wrapper extends React.Component {
-  state = {};
+  state = {
+    sidebarCollapse: true,
+  };
 
   componentDidMount() {
     const newState = {};
@@ -281,6 +283,12 @@ class Wrapper extends React.Component {
     });
   }
 
+  siderbarCollapseToggle() {
+    this.setState({
+      sidebarCollapse: !this.state.sidebarCollapse
+    })
+  }
+
   render() {
     const dbs = this.state.dbs;
 
@@ -296,6 +304,8 @@ class Wrapper extends React.Component {
       changeDatabase: this.changeDatabase.bind(this),
       refreshDbs: this.refreshDbs.bind(this),
       ip: this.state.ip,
+      sidebarCollapse: this.state.sidebarCollapse,
+      sidebarCollapseToggle: this.siderbarCollapseToggle.bind(this),
 
       defaultPrivateKey: this.state.defaultPrivateKey,
       openApiServer: this.state.openApiServer,
@@ -318,7 +328,7 @@ class Wrapper extends React.Component {
       );
     } else {
       return (
-        <div key={_db.db} className="container-fluid" style={{ width: "100%" }}>
+        <div key={_db.db} className="container-fluid" style={{ width: "100%", height: "100%" }}>
           {this.state.showServerOpenApiAlert ? (
             <div
               className="row"
@@ -354,22 +364,27 @@ class Wrapper extends React.Component {
               </p>
             </div>
           ) : null}
-          <div
-            className="col-md-3 col-xs-1"
-            style={{
-              height: "100vh",
-              padding: "0px",
-              position: "fixed",
-              margin: "0",
-            }}
-          >
-            <Sidebar
-              _db={_db}
-              openApiServer={this.state.openApiServer}
-              {...this.props}
-              style={{ width: "100%", margin: "0" }}
-            />
-          </div>
+          
+            <div
+              id="sidebar-wrapper"
+              className={this.state.sidebarCollapse ? "col-md-3 col-xs-1 sidebar-collapse-width" : "col-md-3 col-xs-1 sidebar-non-collapse-width"}
+              style={{
+                height: "100%",
+                padding: "0px",
+               
+                margin: "0",
+
+              }}
+            >
+              <Sidebar
+                _db={_db}
+                openApiServer={this.state.openApiServer}
+                {...this.props}
+                style={{ width: "100%", margin: "0" }}
+              />
+            </div>
+        
+         
 
           {this.state.error ? (
             <ErrorModal
@@ -387,8 +402,8 @@ class Wrapper extends React.Component {
 
           <div
             id="main-content-wrapper"
-            className="col-md-9 col-xs-11"
-            style={{ paddingLeft: "20px", height: "100%", overflowX: "hidden" }}
+            className={this.state.sidebarCollapse ? "col-md-9 col-xs-11 sidebar-collapse-main-content-width" : "col-md-9 col-xs-11 sidebar-non-collapse-main-content-width"} 
+            style={{height: "100%", overflowX: "hidden" }}
           >
             <div style={{ padding: "0px" }}>
               <Header _db={_db} {...this.props} />
@@ -487,9 +502,9 @@ class Wrapper extends React.Component {
                 <Route component={NotFound} />
               </Switch>
             )}
-            <div className="row">
+            {/* <div className="row">
               <Footer />
-            </div>
+            </div> */}
           </div>
         </div>
       );
