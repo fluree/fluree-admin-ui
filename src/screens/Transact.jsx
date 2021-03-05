@@ -73,6 +73,8 @@ class Transact extends React.Component {
     const historyOpenStatus = JSON.parse(
       localStorage.getItem("historyOpenForTransact")
     );
+    const lastResults = localStorage.getItem("lastResults");
+    newState["results"] = lastResults;
 
     newState["historyOpen"] = historyOpenStatus ? true : false;
 
@@ -362,6 +364,7 @@ class Transact extends React.Component {
 
     const param = this.state.txParam;
     const isLoading = this.state.loading || this.props._db.loading;
+    
     
     return (
       <div style={{ width: "100%" }}>
