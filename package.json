@@ -2,6 +2,9 @@
   "name": "@fluree/admin-ui",
   "version": "1.0.0-rc1",
   "private": false,
+  "files": [
+    "build"
+  ],
   "proxy": "http://localhost",
   "dependencies": {
     "@fluree/crypto-utils": "^1.7.0",
