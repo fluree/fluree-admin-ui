@@ -174,7 +174,7 @@ class Sidebar extends React.Component {
               <hr className="border-top-solid-gray" />
             </li>
 
-            <DropdownButton
+            {/* <DropdownButton
               id="queryButton"
               onClick={sidebarCollapseToggle}
               title={
@@ -192,11 +192,12 @@ class Sidebar extends React.Component {
                       Query
                     </span>
                   </span>
-                  {/* <span
+                  //
+                   <span
                             className={!this.state.toggleOpen ? "nav-hide-md" : null}
                     >
                             <i className="fas fa-caret-down dropdown" />
-                    </span> */}
+                    </span> *
                 </span>
               }
             >
@@ -209,7 +210,22 @@ class Sidebar extends React.Component {
                   <MenuItem key={language}>{language}</MenuItem>
                 </LinkContainer>
               ))}
-            </DropdownButton>
+            </DropdownButton> */}
+
+            <LinkContainer to={`/${queryLanguage}`} id="account-nav">
+              <NavItem eventKey={3}>
+                <i className="fas fa-search menu-symbol" aria-hidden="true"></i>
+                <span
+                  className={
+                    sidebarCollapse
+                      ? "nav-hide menu-item account-link"
+                      : "menu-item account-link"
+                  }
+                >
+                  Query
+                </span>
+              </NavItem>
+            </LinkContainer>
 
             <LinkContainer to="/transact">
               <NavItem eventKey={4} href="#">

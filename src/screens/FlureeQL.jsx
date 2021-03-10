@@ -72,9 +72,9 @@ class FlureeQL extends React.Component {
     //let { action, txParam, queryParam } = this.checkURLAndOverrideParam();
 
     const historyOpenStatus = JSON.parse(localStorage.getItem("historyOpen"));
-
+    const lastResults = localStorage.getItem("lastResults")
     newState["historyOpen"] = historyOpenStatus ? true : false;
-
+    newState["results"] = lastResults;
     this.setState(newState);
   }
 
@@ -238,6 +238,15 @@ class FlureeQL extends React.Component {
           2
         ),
       });
+      let warningMessage = JSON.stringify(
+        [
+          "Large transactions may take some time to process.",
+          "Either wait or check the latest block for results.",
+        ],
+        null,
+        2
+      );
+      localStorage.setItem("lastResults",  warningMessage)
     }
 
     if (promise.status >= 400) {
@@ -245,6 +254,7 @@ class FlureeQL extends React.Component {
       const result = promise.message || promise;
       var formattedResult = JSON.stringify(result, null, 2);
       this.setState({ loading: false, results: formattedResult });
+      localStorage.setItem("lastResults", formattedResult)
       displayError(result);
       return;
     }
@@ -256,6 +266,7 @@ class FlureeQL extends React.Component {
           const result = res.message || res;
           var formattedResult = JSON.stringify(result, null, 2);
           this.setState({ loading: false, results: formattedResult });
+          localStorage.setItem("lastResults", formattedResult);
           displayError(result);
           return;
         }
@@ -301,12 +312,14 @@ class FlureeQL extends React.Component {
           time: time,
           status: status,
         });
+        localStorage.setItem("lastResults", formattedResult);
       })
       .catch((error) => {
         const { displayError } = this.props._db;
         const result = error.json || error;
         var formattedResult = JSON.stringify(result, null, 2);
         this.setState({ loading: false, results: formattedResult });
+        localStorage.setItem("lastResults", formattedResult);
         displayError(result);
       });
 

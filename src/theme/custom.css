@@ -347,7 +347,7 @@ nav .navbar-nav {
   color: #13c6ff;
 }
 #config-container {
-  margin-left: auto;
+  /* margin-left: auto; */
   width: 100%;
 }
 
