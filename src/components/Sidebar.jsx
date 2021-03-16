@@ -60,13 +60,18 @@ class Sidebar extends React.Component {
         fluid
         className={this.state.sidebarCollapse ? "navbar-side" : "navbar-side"}
       >
-        {sidebarCollapse ? (
-          <Navbar.Brand>
-            <i
-              className="fas fa-bars menu-symbol toggle-button"
-              onClick={sidebarCollapseToggle}
-            />
-          </Navbar.Brand>
+        {/* {sidebarCollapse ? (
+          <Nav>
+            <LinkContainer to="/">
+              <NavItem eventKey={6}>
+                <i
+                  className="fas fa-bars menu-symbol toggle-button"
+                  onClick={sidebarCollapseToggle}
+                ></i>
+                <span></span>
+              </NavItem>
+            </LinkContainer>
+          </Nav>
         ) : (
           <Navbar.Brand>
             <LinkContainer to="/">
@@ -78,7 +83,7 @@ class Sidebar extends React.Component {
               />
             </LinkContainer>
           </Navbar.Brand>
-        )}
+        )} */}
 
         {noDbs ? (
           <Nav onSelect={this.handleSelect.bind(this)}>
@@ -91,7 +96,7 @@ class Sidebar extends React.Component {
                 <span
                   className={
                     !this.state.toggleOpen
-                      ? "nav-hide-md menu-item account-link"
+                      ? "nav-hide menu-item account-link"
                       : "menu-item account-link"
                   }
                 >
@@ -119,8 +124,31 @@ class Sidebar extends React.Component {
           </Nav>
         ) : (
           <Nav onSelect={this.handleSelect.bind(this)}>
+            <LinkContainer to="/">
+              <NavItem
+                className={sidebarCollapse ? "side-bar-item" : ""}
+                eventKey={1}
+              >
+                <i
+                  className="fas fa-bars menu-symbol toggle-button"
+                  onClick={sidebarCollapseToggle}
+                ></i>
+                <span
+                  className={
+                    sidebarCollapse
+                      ? "nav-hide menu-item account-link"
+                      : "menu-item account-link"
+                  }
+                >
+                  Fluree
+                </span>
+              </NavItem>
+            </LinkContainer>
             <LinkContainer to="/account" id="account-nav">
-              <NavItem eventKey={2}>
+              <NavItem
+                className={sidebarCollapse ? "side-bar-item" : ""}
+                eventKey={2}
+              >
                 <i
                   className="fas fa-info-circle hidden-sm-down menu-symbol"
                   aria-hidden="true"
@@ -136,7 +164,16 @@ class Sidebar extends React.Component {
                 </span>
               </NavItem>
             </LinkContainer>
-            <NavDropdown
+
+            <NavItem
+              onClick={sidebarCollapseToggle}
+              className={sidebarCollapse ? "side-bar-item" : ""}
+              eventKey={2}
+            >
+              <i className="fas fa-cube menu-symbol" aria-hidden="true"></i>
+            </NavItem>
+
+            {/* <NavDropdown
               onClick={sidebarCollapseToggle}
               title={
                 <span>
@@ -168,13 +205,21 @@ class Sidebar extends React.Component {
                   {db}
                 </MenuItem>
               ))}
-            </NavDropdown>
+            </NavDropdown> */}
 
             <li>
               <hr className="border-top-solid-gray" />
             </li>
 
-            <DropdownButton
+            <NavItem
+              onClick={sidebarCollapseToggle}
+              className={sidebarCollapse ? "side-bar-item" : ""}
+              eventKey={2}
+            >
+              <i className="fas fa-search menu-symbol" aria-hidden="true"></i>
+            </NavItem>
+
+            {/* <DropdownButton
               id="queryButton"
               onClick={sidebarCollapseToggle}
               title={
@@ -192,11 +237,12 @@ class Sidebar extends React.Component {
                       Query
                     </span>
                   </span>
-                  {/* <span
-                            className={!this.state.toggleOpen ? "nav-hide-md" : null}
-                    >
-                            <i className="fas fa-caret-down dropdown" />
-                    </span> */}
+
+                  // <span
+                  //           className={!this.state.toggleOpen ? "nav-hide-md" : null}
+                  //   >
+                  //           <i className="fas fa-caret-down dropdown" />
+                  //   </span> 
                 </span>
               }
             >
@@ -209,10 +255,14 @@ class Sidebar extends React.Component {
                   <MenuItem key={language}>{language}</MenuItem>
                 </LinkContainer>
               ))}
-            </DropdownButton>
+            </DropdownButton> */}
 
             <LinkContainer to="/transact">
-              <NavItem eventKey={4} href="#">
+              <NavItem
+                className={sidebarCollapse ? "side-bar-item" : ""}
+                eventKey={4}
+                href="#"
+              >
                 <i
                   className="fas fa-handshake menu-symbol"
                   aria-hidden="true"
@@ -227,7 +277,11 @@ class Sidebar extends React.Component {
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/schema">
-              <NavItem eventKey={5} href="#">
+              <NavItem
+                className={sidebarCollapse ? "side-bar-item" : ""}
+                eventKey={5}
+                href="#"
+              >
                 <i
                   className="fas fa-database menu-symbol"
                   aria-hidden="true"
@@ -243,7 +297,11 @@ class Sidebar extends React.Component {
             </LinkContainer>
             {openApiServer && (
               <LinkContainer to="/networkdashboard">
-                <NavItem eventKey={6} href="#">
+                <NavItem
+                  className={sidebarCollapse ? "side-bar-item" : ""}
+                  eventKey={6}
+                  href="#"
+                >
                   <i
                     className="fas fa-network-wired menu-symbol"
                     aria-hidden="true"
@@ -260,7 +318,11 @@ class Sidebar extends React.Component {
             )}
             {openApiServer && (
               <LinkContainer to="/exploredb">
-                <NavItem eventKey={7} href="#">
+                <NavItem
+                  className={sidebarCollapse ? "side-bar-item" : ""}
+                  eventKey={7}
+                  href="#"
+                >
                   <i
                     className="fas fa-search  menu-symbol"
                     aria-hidden="true"
@@ -277,7 +339,11 @@ class Sidebar extends React.Component {
             )}
 
             <LinkContainer to="/import">
-              <NavItem eventKey={8} href="#">
+              <NavItem
+                className={sidebarCollapse ? "side-bar-item" : ""}
+                eventKey={8}
+                href="#"
+              >
                 <i
                   className="far fa-chart-bar menu-symbol"
                   aria-hidden="true"
@@ -292,7 +358,11 @@ class Sidebar extends React.Component {
               </NavItem>
             </LinkContainer>
             <LinkContainer to="/permissions">
-              <NavItem eventKey={9} href="#">
+              <NavItem
+                className={sidebarCollapse ? "side-bar-item" : ""}
+                eventKey={9}
+                href="#"
+              >
                 <i
                   className="fas fa-file-import menu-symbol"
                   aria-hidden="true"
@@ -313,7 +383,7 @@ class Sidebar extends React.Component {
               eventKey="docs"
               href="https://docs.flur.ee"
               target="_blank"
-              className="docs"
+              className={sidebarCollapse ? "docs side-bar-item" : "docs"}
               id="docs-nav"
             >
               <i className="fas fa-book menu-symbol" />

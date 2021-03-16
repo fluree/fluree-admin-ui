@@ -251,6 +251,10 @@ a {
 /*****  NAVBAR ******/
 
 /*** Side Bar ***/
+
+.navbar-nav > li.side-bar-item > a {
+  text-align: center;
+}
 .navbar-default .navbar-brand {
   color: #13c6ff;
 }
