@@ -15,6 +15,8 @@ import "./theme/custom.css";
 import { flureeFetch, gateway } from "./flureeFetch";
 import GraphQL from "./screens/GraphQL";
 
+const { version } = require('../package.json');
+
 const FlureeQL = asyncComponent(() => import("./screens/FlureeQL"));
 const Transact = asyncComponent(() => import("./screens/Transact"));
 const SparQL = asyncComponent(() => import("./screens/SparQL"));
@@ -26,13 +28,12 @@ const NetworkDashboard = asyncComponent(() =>
   import("./screens/NetworkDashboard")
 );
 
-const NewSignUp = asyncComponent(() => import("./screens/NewSignUp"));
 const NotFound = asyncComponent(() => import("./screens/NotFound"));
 const Permissions = asyncComponent(() => import("./screens/Permissions"));
 const Import = asyncComponent(() => import("./screens/Import"));
 
 class Wrapper extends React.Component {
-  state = {};
+  state = {adminUIVersion: version};
 
   componentDidMount() {
     const newState = {};
@@ -488,7 +489,7 @@ class Wrapper extends React.Component {
               </Switch>
             )}
             <div className="row">
-              <Footer />
+              <Footer adminUIVersion={this.state.adminUIVersion} />
             </div>
           </div>
         </div>
