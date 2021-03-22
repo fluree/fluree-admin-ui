@@ -15,7 +15,7 @@ function gateway() {
         window.location.port
       : window.location.protocol + "//" + window.location.hostname;
   } else {
-    return "http://localhost:8080";
+    return "http://localhost:8090";
   }
 }
 
@@ -46,14 +46,14 @@ function fullEndpoint(endpoint, network, db, body, ip) {
     "command",
     "ledger-stats",
     "block-range-with-txn",
-    "nw-state"
+    "nw-state",
+    "version"
   ].includes(endpoint);
 
   const startURI = gateway();
 
   if (locatedEndpoint) {
-
-    if (endpoint === "nw-state") {
+    if (endpoint === "nw-state" || endpoint === "version") {
       return `${startURI}/${endpointInfix}/${endpoint}`;
     } else {
       return `${startURI}/${endpointInfix}/${network}/${db}/${endpoint}`;
@@ -126,4 +126,10 @@ const flureeFetch = (opts) => {
     });
 };
 
-export { flureeFetch, gateway };
+const flureeVersion = async () => {
+  const fullUri = fullEndpoint("version")
+  const response = await fetch(fullUri)
+  return await response.text()
+}
+
+export { flureeFetch, gateway, flureeVersion };
