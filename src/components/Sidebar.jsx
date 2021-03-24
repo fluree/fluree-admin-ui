@@ -259,7 +259,7 @@ class Sidebar extends React.Component {
                           : "menu-item"
                       }
                     >
-                      Network Dashboard
+                      Network&nbsp;Dashboard
                     </span>
                   </NavItem>
                 </LinkContainer>
