@@ -1,10 +1,13 @@
 SOURCES := $(shell find src)
+LESS_SOURCES := $(shell find src/theme -name '*.less')
 
 .PHONY: run clean
 
-build: node_modules $(SOURCES) 
-	npm run build-css
+build: node_modules src/theme/bootstrap.css $(SOURCES) 
 	npm run build
+
+src/theme/bootstrap.css: node_modules $(LESS_SOURCES)
+	npm run build-css
 
 run: node_modules
 	npm run start
@@ -18,3 +21,4 @@ deploy: build
 clean:
 	rm -rf build
 	rm -rf node_modules
+	rm src/theme/bootstrap.css
