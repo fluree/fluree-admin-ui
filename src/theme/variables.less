@@ -63,7 +63,7 @@
 @line-height-computed: floor((@font-size-base * @line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
-@headings-font-family: "Open Sans Bold", sans-serif;
+@headings-font-family: "Cooper Hewitt", sans-serif;
 @headings-font-weight: normal;
 @headings-line-height: 1.34343434;
 @headings-color: inherit;
@@ -136,7 +136,9 @@
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
-@btn-font-weight: normal;
+@btn-font-weight: 700;
+@btn-font-family: @headings-font-family;
+@btn-font-size: 16;
 
 @btn-default-color: #333;
 @btn-default-bg: #fff;

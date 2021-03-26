@@ -3,39 +3,81 @@
   src: url("open-sans/regular.eot");
   src: url("open-sans/regular.eot#iefix") format("embedded-opentype"),
     url("open-sans/regular.ttf") format("truetype"),
-    url("open-sans/regular.woff") format("woff");
+    url("open-sans/regular.woff") format("woff"),
+    url("open-sans/regular.svg") format("svg");
 }
 
 @font-face {
-  font-family: "Open Sans Light";
+  font-family: "Open Sans";
   src: url("open-sans/light.eot");
   src: url("open-sans/light.eot#iefix") format("embedded-opentype"),
     url("open-sans/light.ttf") format("truetype"),
-    url("open-sans/light.woff") format("woff");
+    url("open-sans/light.woff") format("woff"),
+    url("open-sans/light.svg") format("svg");
+  font-weight: lighter;
 }
 
 @font-face {
-  font-family: "Open Sans Italic";
+  font-family: "Open Sans";
   src: url("open-sans/italic.eot");
   src: url("open-sans/italic.eot#iefix") format("embedded-opentype"),
     url("open-sans/italic.ttf") format("truetype"),
-    url("open-sans/italic.woff") format("woff");
+    url("open-sans/italic.woff") format("woff"),
+    url("open-sans/italic.svg") format("svg");
+  font-style: italic;
 }
 
 @font-face {
-  font-family: "Open Sans Bold";
+  font-family: "Open Sans";
   src: url("open-sans/bold.eot");
   src: url("open-sans/bold.eot#iefix") format("embedded-opentype"),
     url("open-sans/bold.ttf") format("truetype"),
-    url("open-sans/bold.woff") format("woff");
+    url("open-sans/bold.woff") format("woff"),
+    url("open-sans/bold.svg") format("svg");
+  font-weight: bold;
 }
 
 @font-face {
-  font-family: "Open Sans Bold Italic";
+  font-family: "Open Sans";
   src: url("open-sans/bold-italic.eot");
   src: url("open-sans/bold-italic.eot#iefix") format("embedded-opentype"),
     url("open-sans/bold-italic.ttf") format("truetype"),
-    url("open-sans/bold-italic.woff") format("woff");
+    url("open-sans/bold-italic.woff") format("woff"),
+    url("open-sans/bold-italic.svg") format("svg");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Cooper Hewitt";
+  src: url("cooper-hewitt/CooperHewitt-Medium.eot") format("embedded-opentype"),
+    url("cooper-hewitt/CooperHewitt-Medium.woff") format("woff"),
+    url("cooper-hewitt/CooperHewitt-Medium.svg") format("svg");
+}
+
+@font-face {
+  font-family: "Cooper Hewitt";
+  src: url("cooper-hewitt/CooperHewitt-Bold.eot") format("embedded-opentype"),
+    url("cooper-hewitt/CooperHewitt-Bold.woff") format("woff"),
+    url("cooper-hewitt/CooperHewitt-Bold.svg") format("svg");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Cooper Hewitt";
+  src: url("cooper-hewitt/CooperHewitt-MediumItalic.eot") format("embedded-opentype"),
+    url("cooper-hewitt/CooperHewitt-MediumItalic.woff") format("woff"),
+    url("cooper-hewitt/CooperHewitt-MediumItalic.svg") format("svg");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Cooper Hewitt";
+  src: url("cooper-hewitt/CooperHewitt-BoldItalic.eot") format("embedded-opentype"),
+    url("cooper-hewitt/CooperHewitt-BoldItalic.woff") format("woff"),
+    url("cooper-hewitt/CooperHewitt-BoldItalic.svg") format("svg");
+  font-style: italic;
+  font-weight: bold;
 }
 
 h1,
@@ -44,8 +86,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans Bold", sans-serif;
-  font-weight: normal;
+  font-family: @headings-font-family;
+  font-weight: @headings-font-weight;
   margin: 0;
 }
 
@@ -55,7 +97,8 @@ h3.light,
 h4.light,
 h5.light,
 h6.light {
-  font-family: "Open Sans Light", sans-serif;
+  font-family: @headings-font-family;
+  font-weight: lighter;
 }
 
 h1.regular,
@@ -64,7 +107,7 @@ h3.regular,
 h4.regular,
 h5.regular,
 h6.regular {
-  font-family: "Open Sans", sans-serif;
+  font-family: @headings-font-family;
 }
 
 em h1,
@@ -79,7 +122,13 @@ em h5,
 h5 em,
 em h6,
 h6 em {
-  font-family: "Open Sans Bold Italic", sans-serif;
+  font-family: @headings-font-family;
+  font-weight: bold;
+  font-style: italic;
+}
+
+th {
+  font-family: @headings-font-family;
 }
 
 .micro,
@@ -92,17 +141,19 @@ h6 em {
 
 .strong,
 strong {
-  font-family: "Open Sans Bold", sans-serif;
-  font-weight: normal;
+  font-family: @font-family-base;
+  font-weight: bold;
 }
 strong em,
 em strong {
-  font-family: "Open Sans Bold Italic", sans-serif;
+  font-family: @font-family-base;
+  font-weight: bold;
+  font-style: italic;
 }
 
 address,
 em {
-  font-family: "Open Sans Italic", sans-serif;
+  font-family: @font-family-base;
 }
 
 .prose {

@@ -1,6 +1,5 @@
 body {
   background-color: #f1fafe;
-  font-family: "Cooper Hewitt";
 }
 
 html,
@@ -430,7 +429,6 @@ a#basic-nav-dropdown.dropdown-toggle {
 .buttonPurple {
   background-color: #4b56a5;
   border-radius: 4px;
-  font-family: "Cooper Hewitt";
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
