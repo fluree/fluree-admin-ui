@@ -64,7 +64,7 @@ class Sidebar extends React.Component {
               <img
                 id="img-brand"
                 alt="FlureeDB"
-                src="/logo_horizontal_white.png"
+                src="/yeti_blue_horizontal.png"
               />
             </LinkContainer>
           </Navbar.Brand>
