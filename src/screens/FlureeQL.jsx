@@ -249,15 +249,7 @@ class FlureeQL extends React.Component {
       localStorage.setItem("lastResults",  warningMessage)
     }
 
-    if (promise.status >= 400) {
-      const { displayError } = this.props._db;
-      const result = promise.message || promise;
-      var formattedResult = JSON.stringify(result, null, 2);
-      this.setState({ loading: false, results: formattedResult });
-      localStorage.setItem("lastResults", formattedResult)
-      displayError(result);
-      return;
-    }
+  
 
     promise
       .then((res) => {
@@ -317,8 +309,10 @@ class FlureeQL extends React.Component {
       .catch((error) => {
         const { displayError } = this.props._db;
         const result = error.json || error;
+        
         var formattedResult = JSON.stringify(result, null, 2);
         this.setState({ loading: false, results: formattedResult });
+        
         localStorage.setItem("lastResults", formattedResult);
         displayError(result);
       });

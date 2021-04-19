@@ -112,15 +112,14 @@ const flureeFetch = (opts) => {
     .catch((error) => {
       if (!noRedirect && (error.status === 401 || error.status === 403)) {
         localStorage.removeItem("token");
-        if (this.props) {
-          this.props.logout();
-        } else {
-          window.location = "/";
-        }
+        return error.json
+      
       } else {
         if (error.json) {
+         
           return error.json;
         }
+       
         return error;
       }
     });
