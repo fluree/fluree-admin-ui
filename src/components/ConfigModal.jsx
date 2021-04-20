@@ -14,9 +14,7 @@ class ConfigModal extends React.Component {
 
   componentDidMount() {
     if (this.props._db) {
-      console.log(this.props._db);
       let { ip, openApiServer, defaultPrivateKey } = this.props._db;
-      console.log(ip);
       this.setState({
         ip: ip,
         openApiServer: openApiServer,
@@ -43,9 +41,9 @@ class ConfigModal extends React.Component {
 
   render() {
     const error = this.props.error;
-    let errType, message;
     if (error !== undefined && error !== null) {
-      errType = error.error;
+      let errType, message;
+      errType = error.TypeError;
       message =
         error.message || error.error || "No Message Provided with Error.";
     }
@@ -55,9 +53,9 @@ class ConfigModal extends React.Component {
           <Modal.Header>
             <Modal.Title>
               {this.props.error ? (
-                <span>Error processing action ({error.status}) </span>
+                <h1>{error.message}</h1>
               ) : (
-                <span>Config Settings</span>
+                  <b>Config Settings</b>
               )}
             </Modal.Title>
           </Modal.Header>
