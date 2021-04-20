@@ -37,9 +37,11 @@ class Wrapper extends React.Component {
 
   componentDidMount() {
     const newState = {};
-
-    const { token, account } = this.props;
+ 
+    const { token} = this.props;
+   
     let nwStateIp = gateway();
+    newState["ip"] = nwStateIp
     let nwStateParams = {
       endpoint: "nw-state",
       ip: nwStateIp,
@@ -59,17 +61,15 @@ class Wrapper extends React.Component {
 
     flureeFetch(nwStateParams)
       .then((response) => {
-        let isOpenApi = response.json["open-api"];
+        let isOpenApi = response.json ? response.json["open-api"] : null;
         let openApiServerStatusShow = this.getOpenApiServerStatus();
         if (openApiServerStatusShow === undefined) {
           this.setOpenApiServerStatus(isOpenApi);
           openApiServerStatusShow = !isOpenApi;
         }
-
         this.setState({
           showServerOpenApiAlert: openApiServerStatusShow,
           openApiServer: isOpenApi,
-          ip: nwStateIp,
           networkData: response.json,
         });
 
@@ -87,13 +87,14 @@ class Wrapper extends React.Component {
         if ((config === false || !config.defaultPrivateKey) && !isOpenApi) {
           newState["showConfig"] = true;
         }
-        newState["ip"] = nwStateIp;
+       
         newState["defaultPrivateKey"] = defaultPrivateKey;
         newState["account"] = "Fluree";
         
         this.setState(newState);
       })
       .catch((error) => {
+     
         this.displayError(error);
       });
 
@@ -196,7 +197,6 @@ class Wrapper extends React.Component {
 
   getDbs = (ip, auth) => {
     let opts = { ip: ip, auth: auth, endpoint: "dbs" };
-
     const dbs = flureeFetch(opts);
 
     if (dbs.status >= 400) {
@@ -253,7 +253,7 @@ class Wrapper extends React.Component {
 
     dbs.then((res) => {
       if (res instanceof Error) {
-        this.setState({ showConfig: true, error: true });
+        this.setState({ showConfig: true, error: res });
         return;
       }
 
@@ -297,7 +297,6 @@ class Wrapper extends React.Component {
       changeDatabase: this.changeDatabase.bind(this),
       refreshDbs: this.refreshDbs.bind(this),
       ip: this.state.ip,
-
       defaultPrivateKey: this.state.defaultPrivateKey,
       openApiServer: this.state.openApiServer,
       networkData: this.state.networkData,

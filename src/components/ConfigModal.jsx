@@ -14,7 +14,9 @@ class ConfigModal extends React.Component {
 
   componentDidMount() {
     if (this.props._db) {
+      
       let { ip, openApiServer, defaultPrivateKey } = this.props._db;
+     
       this.setState({
         ip: ip,
         openApiServer: openApiServer,
@@ -32,7 +34,7 @@ class ConfigModal extends React.Component {
   };
 
   getValidateDefaultPrivateKey = () => {
-    if (this.state.defaultPrivateKey || this.state.openApi) {
+    if (this.state.defaultPrivateKey) {
       return false;
     } else {
       return true;
@@ -41,9 +43,8 @@ class ConfigModal extends React.Component {
 
   render() {
     const error = this.props.error;
+    let message;
     if (error !== undefined && error !== null) {
-      let errType, message;
-      errType = error.TypeError;
       message =
         error.message || error.error || "No Message Provided with Error.";
     }
@@ -52,22 +53,12 @@ class ConfigModal extends React.Component {
         <Modal.Dialog>
           <Modal.Header>
             <Modal.Title>
-              {this.props.error ? (
-                <h1>{error.message}</h1>
-              ) : (
-                  <b>Config Settings</b>
-              )}
+              {this.props.error ? <h1>{message}</h1> : <h1>Config Settings</h1>}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {this.props.error ? (
               <div>
-                {/* <div style={{border: "3px outset #d68484", marginBottom: "10px", padding: "5px", backgroundColor: "#ffeded"}}>
-               <p>Error processing action young fella ({error.status}) </p>
-                {errType ? <p>Error type: {errType}</p> : null}
-                <p>{message}</p>
-                <p>{JSON.stringify(error)}</p>
-              </div> */}
                 <div
                   className="row"
                   style={{
@@ -81,7 +72,7 @@ class ConfigModal extends React.Component {
                     <i style={{ fontSize: "35px" }} className="fas fa-wrench" />
                   </div>
                   <div className="col-sm-10">
-                    Unable to communicate to server at: {this.state.ip}.
+                    Unable to communicate with server at: {this.state.ip}.
                     <br></br>
                     <br></br>
                     If you believe this error to have been caused by an
@@ -101,7 +92,7 @@ class ConfigModal extends React.Component {
                 />
               </FormGroup>
 
-              {this.state.openApiServer ? null : (
+              {this.state.openApiServer === null ? null : (
                 <FormGroup>
                   <ControlLabel>Default Private Key</ControlLabel>
                   <FormControl
@@ -115,7 +106,7 @@ class ConfigModal extends React.Component {
                 </FormGroup>
               )}
               <Button
-                disabled={this.getValidateDefaultPrivateKey()}
+                disabled={this.state.openApiServer === null ? false : this.getValidateDefaultPrivateKey()}
                 className="buttonPurple"
                 type="submit"
               >
