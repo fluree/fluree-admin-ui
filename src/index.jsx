@@ -15,7 +15,7 @@ import "./theme/custom.css";
 import { flureeFetch, gateway } from "./flureeFetch";
 import GraphQL from "./screens/GraphQL";
 
-const { version } = require('../package.json');
+const { version } = require("../package.json");
 
 const FlureeQL = asyncComponent(() => import("./screens/FlureeQL"));
 const Transact = asyncComponent(() => import("./screens/Transact"));
@@ -33,15 +33,12 @@ const Permissions = asyncComponent(() => import("./screens/Permissions"));
 const Import = asyncComponent(() => import("./screens/Import"));
 
 class Wrapper extends React.Component {
-  state = {adminUIVersion: version};
+  state = { adminUIVersion: version };
 
   componentDidMount() {
     const newState = {};
- 
-    const { token} = this.props;
-   
     let nwStateIp = gateway();
-    newState["ip"] = nwStateIp
+    newState["ip"] = nwStateIp;
     let nwStateParams = {
       endpoint: "nw-state",
       ip: nwStateIp,
@@ -49,7 +46,7 @@ class Wrapper extends React.Component {
     };
 
     const queryLanguage = localStorage.getItem("queryLanguage");
-    
+
     if (queryLanguage) {
       newState["queryLanguage"] = queryLanguage;
       this.setState(newState);
@@ -61,10 +58,13 @@ class Wrapper extends React.Component {
 
     flureeFetch(nwStateParams)
       .then((response) => {
-        let isOpenApi = response.json ? response.json["open-api"] : null;
-        let openApiServerStatusShow = this.getOpenApiServerStatus();
+        let isOpenApi;
+        if (response.json) {
+          isOpenApi = response.json["open-api"];
+        }
+        let openApiServerStatusShow = this.getOpenApiServerStatusShow();
         if (openApiServerStatusShow === undefined) {
-          this.setOpenApiServerStatus(isOpenApi);
+          this.setOpenApiServerStatusShow(isOpenApi);
           openApiServerStatusShow = !isOpenApi;
         }
         this.setState({
@@ -75,9 +75,10 @@ class Wrapper extends React.Component {
 
         // determine if need to display config
         const config = this.getConfig();
-        if ((!config || !config.defaultPrivateKey) && !isOpenApi) {
-          newState["showConfig"] = true;
-        }
+       
+        // if ((!config || !config.defaultPrivateKey) && !isOpenApi) {
+        //   newState["showConfig"] = true;
+        // }
 
         // Determine whether or not to prompt for "default" private key
         let defaultPrivateKey;
@@ -87,18 +88,20 @@ class Wrapper extends React.Component {
         if ((config === false || !config.defaultPrivateKey) && !isOpenApi) {
           newState["showConfig"] = true;
         }
-       
+
         newState["defaultPrivateKey"] = defaultPrivateKey;
         newState["account"] = "Fluree";
-        
+
         this.setState(newState);
+       
+
       })
       .catch((error) => {
-     
+   
         this.displayError(error);
       });
 
-    const dbs = this.getDbs(newState["ip"], token);
+    const dbs = this.getDbs(newState["ip"]);
     dbs.then((res) => {
       if (res instanceof Error) {
         newState["showConfig"] = true;
@@ -134,22 +137,19 @@ class Wrapper extends React.Component {
         }
       }
     });
-    ;
   }
 
-  setOpenApiServerStatus = (openApiServerStatus) => {
+  setOpenApiServerStatusShow = (openApiServerStatus) => {
     const config = {
       openApiServerStatusShow: openApiServerStatus ? false : true,
     };
     localStorage.setItem("openApiServerConfig", JSON.stringify(config));
   };
 
-  getOpenApiServerStatus = () => {
+  getOpenApiServerStatusShow = () => {
     let config = localStorage.getItem("openApiServerConfig");
     config = JSON.parse(config);
-
     let openApiServerStatusShow = get(config, "openApiServerStatusShow");
-
     return openApiServerStatusShow;
   };
 
@@ -173,10 +173,9 @@ class Wrapper extends React.Component {
   getConfig() {
     let config = localStorage.getItem("flureeConfig");
     config = JSON.parse(config);
-
+   
     let ip = get(config, "ip");
     let defaultPrivateKey = get(config, "defaultPrivateKey");
-    let openApiServerStatus = get(config, "openApiServerStatus");
 
     const configNotSet =
       ip === null ||
@@ -190,7 +189,6 @@ class Wrapper extends React.Component {
       return {
         ip: ip,
         defaultPrivateKey: defaultPrivateKey,
-        openApiServerStatus: openApiServerStatus,
       };
     }
   }
@@ -211,14 +209,12 @@ class Wrapper extends React.Component {
     });
   };
 
-  setConfig = (ip, defaultPrivateKey, openApiServerStatus) => {
+  setConfig = (ip, defaultPrivateKey) => {
     let serverConfig = {
       ip: ip,
-      defaultPrivateKey: defaultPrivateKey,
-      openApiServerStatus: openApiServerStatus,
+      defaultPrivateKey: defaultPrivateKey
     };
     localStorage.setItem("flureeConfig", JSON.stringify(serverConfig));
-
     serverConfig["showConfig"] = false;
     serverConfig["error"] = null;
 
@@ -236,8 +232,8 @@ class Wrapper extends React.Component {
     this.setState({ queryLanguage: queryLang });
   }
   toggleshowServerOpenApiAlert() {
-    this.setOpenApiServerStatus(true);
-    let openApiServerStatusShow = this.getOpenApiServerStatus();
+    this.setOpenApiServerStatusShow(true);
+    let openApiServerStatusShow = this.getOpenApiServerStatusShow();
     this.setState({
       showServerOpenApiAlert: openApiServerStatusShow,
     });
