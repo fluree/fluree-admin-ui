@@ -73,12 +73,10 @@ class Wrapper extends React.Component {
           networkData: response.json,
         });
 
-        // determine if need to display config
+      
         const config = this.getConfig();
        
-        // if ((!config || !config.defaultPrivateKey) && !isOpenApi) {
-        //   newState["showConfig"] = true;
-        // }
+       
 
         // Determine whether or not to prompt for "default" private key
         let defaultPrivateKey;
