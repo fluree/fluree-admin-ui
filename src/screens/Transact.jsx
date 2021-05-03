@@ -494,7 +494,7 @@ class Transact extends React.Component {
                     cursor: "col-resize",
                     height: `${availHeight}px`,
                   }}
-                  style={{ marginLeft: "4%" }}
+                  style={{ margin: "1% 3% 1% 4%" }}
                   defaultSize={parseInt(localStorage.getItem("splitPos"), 10)}
                   onChange={(size) => localStorage.setItem("splitPos", size)}
                 >

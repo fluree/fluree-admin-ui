@@ -355,143 +355,164 @@ class Wrapper extends React.Component {
               </p>
             </div>
           ) : null}
-          <div
-            className="col-md-3 col-xs-1"
+          <div className="row"
             style={{
               height: "100vh",
               padding: "0px",
-              position: "fixed",
+              
               margin: "0",
-            }}
-          >
-            <Sidebar
-              _db={_db}
-              openApiServer={this.state.openApiServer}
-              {...this.props}
-              style={{ width: "100%", margin: "0" }}
-            />
-          </div>
-
-          {this.state.error ? (
-            <ErrorModal
-              error={this.state.error}
-              dismiss={this.dismiss.bind(this, "error")}
-            />
-          ) : null}
-          {this.state.showConfig ? (
-            <ConfigModal
-              _db={_db}
-              error={this.state.error}
-              setConfig={this.setConfig.bind(this)}
-            />
-          ) : null}
-
-          <div
-            id="main-content-wrapper"
-            className="col-md-9 col-xs-11"
-            style={{ paddingLeft: "20px", height: "100%", overflowX: "hidden" }}
-          >
-            <div style={{ padding: "0px" }}>
-              <Header _db={_db} {...this.props} />
+            }}>
+            <div
+              className="col-md-2 col-xs-1 col-xl-1"
+              style={{
+                // height: "100vh",
+                padding: "0px",
+                
+                margin: "0",
+              }}
+            >
+              <div 
+              style={{
+                height: "100vh",
+                padding: "0px",
+                width: "100%",
+                margin: "0",
+              }}>
+                <Sidebar
+                  _db={_db}
+                  openApiServer={this.state.openApiServer}
+                  {...this.props}
+                  style={{ width: "100%", margin: "0" }}
+                />
+              </div>
+            
             </div>
-            {this.state.noDbs ? (
-              <Switch>
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/account"
-                  component={Account}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/"
-                  component={Account}
-                />
-                <Route component={NotFound} />
-              </Switch>
-            ) : (
-              <Switch>
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/account"
-                  component={Account}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/flureeql"
-                  component={FlureeQL}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/transact"
-                  component={Transact}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/sparql"
-                  component={SparQL}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/sql"
-                  component={SQL}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/graphql"
-                  component={GraphQL}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/schema"
-                  component={Schema}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/exploredb"
-                  component={ExploreDB}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/networkdashboard"
-                  component={NetworkDashboard}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/permissions"
-                  component={Permissions}
-                />
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/import"
-                  component={Import}
-                />
 
-                <AppliedRoute
-                  props={this.props}
-                  _db={_db}
-                  path="/"
-                  component={Account}
-                />
-                <Route component={NotFound} />
-              </Switch>
-            )}
-            <div className="row">
-              <Footer adminUIVersion={this.state.adminUIVersion} />
+            {this.state.error ? (
+              <ErrorModal
+                error={this.state.error}
+                dismiss={this.dismiss.bind(this, "error")}
+              />
+            ) : null}
+            {this.state.showConfig ? (
+              <ConfigModal
+                _db={_db}
+                error={this.state.error}
+                setConfig={this.setConfig.bind(this)}
+              />
+            ) : null}
+
+            <div
+
+              className="col-md-10 col-xs-11 col-xl-11"
+              style={{ paddingLeft: "20px", height: "100%", overflowX: "hidden" }}
+            >
+              <div style={{ width: "100%", height: "100vh"}}>
+                <div style={{ padding: "0px" }}>
+                  <Header _db={_db} {...this.props} />
+                </div>
+                {this.state.noDbs ? (
+                  <Switch>
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/account"
+                      component={Account}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/"
+                      component={Account}
+                    />
+                    <Route component={NotFound} />
+                  </Switch>
+                ) : (
+                  <Switch>
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/account"
+                      component={Account}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/flureeql"
+                      component={FlureeQL}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/transact"
+                      component={Transact}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/sparql"
+                      component={SparQL}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/sql"
+                      component={SQL}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/graphql"
+                      component={GraphQL}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/schema"
+                      component={Schema}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/exploredb"
+                      component={ExploreDB}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/networkdashboard"
+                      component={NetworkDashboard}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/permissions"
+                      component={Permissions}
+                    />
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/import"
+                      component={Import}
+                    />
+
+                    <AppliedRoute
+                      props={this.props}
+                      _db={_db}
+                      path="/"
+                      component={Account}
+                    />
+                    <Route component={NotFound} />
+                  </Switch>
+                )}
+
+                <div className="row">
+                  <Footer adminUIVersion={this.state.adminUIVersion} />
+                </div>
+              </div>
             </div>
           </div>
+          
         </div>
       );
     }
