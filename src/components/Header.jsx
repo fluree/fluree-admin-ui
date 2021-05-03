@@ -33,7 +33,7 @@ class Header extends React.Component {
   render() {
     return (
       <div style={{ width: "100%", display: "flex", direction: "row" }}>
-        <div style={{ marginLeft: "80%" }}>{DownloadedNav(this.props)}</div>
+        <div style={{ marginLeft: "80%", width: "100%", textAlign: "right" }}>{DownloadedNav(this.props)}</div>
       </div>
     );
   }

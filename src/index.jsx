@@ -401,7 +401,7 @@ class Wrapper extends React.Component {
               style={{ paddingLeft: "20px", height: "100%", overflowX: "hidden" }}
             >
               <div style={{ width: "100%", height: "100vh"}}>
-                <div style={{ padding: "0px" }}>
+                <div style={{ padding: "0px", width: "100%" }}>
                   <Header _db={_db} {...this.props} />
                 </div>
                 {this.state.noDbs ? (
