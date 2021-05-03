@@ -992,7 +992,6 @@ class AccountInfo extends Component {
     return (
       <div
         style={{
-          paddingLeft: "40px",
           marginTop: "40px",
           height: "100%",
           width: "100%",
@@ -1026,7 +1025,11 @@ class AccountInfo extends Component {
           />
         ) : null}
 
-        <div className="row">
+        <div 
+        style={{
+          width: "100%",
+          padding: "1% 3%"
+        }}>
           <h3
             style={{
               alignItems: "center",
@@ -1047,6 +1050,7 @@ class AccountInfo extends Component {
                 className="table-container network-page-table-container"
                 style={{
                   maxHeight: "585px",
+                  width: "100%"
                 }}
               >
                 <table

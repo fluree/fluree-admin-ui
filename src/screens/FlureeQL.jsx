@@ -699,7 +699,7 @@ class FlureeQL extends React.Component {
             className={historyOpen ? "col-xs-9" : "row"}
             style={{ padding: "0" }}
           >
-            <div style={{ position: "relative", height: `${availHeight}px` }}>
+            <div style={{ position: "relative", height: `${availHeight}px`, width: "100%" }}>
               <SplitPane
                 split="vertical"
                 minSize="50%"
@@ -709,7 +709,9 @@ class FlureeQL extends React.Component {
                   cursor: "col-resize",
                   height: `${availHeight}px`,
                 }}
-                style={{ marginLeft: "4%" }}
+                style={{
+                  marginLeft: "3%"
+                }}
                 defaultSize={parseInt(localStorage.getItem("splitPos"), 10)}
                 onChange={(size) => localStorage.setItem("splitPos", size)}
               >

@@ -377,7 +377,7 @@ a#basic-nav-dropdown.dropdown-toggle {
   padding-top: 10px;
   color: #fff;
   margin-bottom: 0px;
-  max-width: 220px;
+  /* max-width: 220px; */
 }
 
 .navbar-side {
@@ -401,6 +401,12 @@ a#basic-nav-dropdown.dropdown-toggle {
     width: 100% !important;
   }
 }
+@media (min-width: 992px) {
+  .navbar-side{
+    max-width: 100%
+}
+}
+
 /*** page container  ****/
 .container-fluid {
   padding: 0;
@@ -537,8 +543,10 @@ div.Pane.vertical.Pane1 {
   max-width: 82%;
   min-width: 10%;
 }
-
-
+ 
+.border-debug {
+  border: 1px solid red;
+}
 
 /* *{
 	border: 1px solid red;

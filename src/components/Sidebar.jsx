@@ -49,7 +49,7 @@ class Sidebar extends React.Component {
     }
 
     return (
-      <div>
+    
         <Navbar
           id="navbar-side"
           fluid
@@ -259,7 +259,7 @@ class Sidebar extends React.Component {
                           : "menu-item"
                       }
                     >
-                      Network&nbsp;Dashboard
+                      Network
                     </span>
                   </NavItem>
                 </LinkContainer>
@@ -342,7 +342,7 @@ class Sidebar extends React.Component {
             </Nav>
           )}
         </Navbar>
-      </div>
+     
     );
   }
 }
