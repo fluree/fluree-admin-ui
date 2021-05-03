@@ -14,7 +14,6 @@ class ConfigModal extends React.Component {
 
   componentDidMount() {
     if (this.props._db) {
-      
       let { ip, openApiServer, defaultPrivateKey } = this.props._db;
      
       this.setState({
@@ -106,7 +105,7 @@ class ConfigModal extends React.Component {
                 </FormGroup>
               )}
               <Button
-                disabled={this.state.openApiServer === null ? false : this.getValidateDefaultPrivateKey()}
+                disabled={this.state.openApiServer === false && this.getValidateDefaultPrivateKey()}
                 className="buttonPurple"
                 type="submit"
               >

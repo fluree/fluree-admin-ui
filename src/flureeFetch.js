@@ -3,7 +3,6 @@ import fetch from "isomorphic-fetch";
 function gateway() {
   let production = process.env.NODE_ENV === "production";
   // production build is same for prod, staging & test environments
- 
   if (production) {
     return window.location.origin
       ? window.location.origin
@@ -15,7 +14,6 @@ function gateway() {
         window.location.port
       : window.location.protocol + "//" + window.location.hostname;
   } else {
- 
     return "http://localhost:8090";
   }
 }
