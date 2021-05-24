@@ -433,7 +433,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
                       }}
                       type="text"
                       value={this.state.confirmDeletion}
-                      placeholder="Enter CONFIRM to delete ledger"
+                      placeholder="Type CONFIRM to delete ledger"
                       onChange={(e) =>
                         this.handleChangeForConfirmDeleteTextbox(e)
                       }
@@ -458,7 +458,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
                       }}
                       type="text"
                       value={this.state.confirmDeletionAuthID}
-                      placeholder="Enter your AuthID to delete this ledger"
+                      placeholder="Type your AuthID to delete this ledger"
                       onChange={(e) =>
                         this.handleChangeForConfirmAuthIDTextbox(e)
                       }
@@ -472,7 +472,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
                       }}
                       type="text"
                       value={this.state.confirmDeletionPrivateKey}
-                      placeholder="Enter your Private Key to delete ledger"
+                      placeholder="Type your Private Key to delete ledger"
                       onChange={(e) =>
                         this.handleChangeForConfirmPrivateKeyTextbox(e)
                       }
