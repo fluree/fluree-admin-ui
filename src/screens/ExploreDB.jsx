@@ -215,7 +215,14 @@ export default class ExploreDB extends Component {
           const collections = res.collections;
 
           const predicates = res.predicates;
-          const predicatesHeader = ["Name", "Type", "Unique", "Index","Full Text", "Multi"];
+          const predicatesHeader = [
+            "Name",
+            "Type",
+            "Unique",
+            "Index",
+            "Full Text",
+            "Multi",
+          ];
           const collectionsHeader = ["Name"];
 
           const collectionsWithMoreInfo = collections
@@ -252,7 +259,11 @@ export default class ExploreDB extends Component {
                   ).toString(),
                   multi: get(predicate, "_predicate/multi", "false").toString(),
                   index: get(predicate, "_predicate/index", "false").toString(),
-                  fulltext: get(predicate, "_predicate/fullText", "false").toString(),
+                  fulltext: get(
+                    predicate,
+                    "_predicate/fullText",
+                    "false"
+                  ).toString(),
                 };
                 return predicateTx;
               }
@@ -448,7 +459,6 @@ export default class ExploreDB extends Component {
             showSubjectHistory: true,
             subjectID: id,
             subjectHistoryJSON,
-           
           }));
         })
         .catch((error) => {
@@ -500,7 +510,7 @@ export default class ExploreDB extends Component {
             null,
             2
           );
-        
+
           predicateHistoryStringify = predicateHistoryStringify.replace(
             /\s{4}\[\n[^\]]+\]/g,
             function (a, b) {
@@ -559,7 +569,7 @@ export default class ExploreDB extends Component {
           }))[0];
 
           let itemHistoryStringify = JSON.stringify(itemHistoryJSON, null, 2);
-         
+
           itemHistoryStringify = itemHistoryStringify.replace(
             /\s{4}\[\n[^\]]+\]/g,
             function (a, b) {
@@ -587,7 +597,6 @@ export default class ExploreDB extends Component {
       predicateDetails: {
         select: ["*"],
         from: collection,
-      
       },
       predicates: {
         select: {
@@ -595,7 +604,6 @@ export default class ExploreDB extends Component {
         },
         where: [["?collection-predicates", "_predicate/name", "?field"]],
         filter: [`(re-find (re-pattern \"^${collection}\") ?field)`],
-       
       },
     };
     const { ip, db, displayError, openApiServer, token } = this.props._db;
@@ -615,12 +623,12 @@ export default class ExploreDB extends Component {
         .then((response) => {
           let res = JSON.stringify(response.json, null, 2) || response;
           let moreDetails = JSON.parse(res).predicateDetails;
-       
+
           let predicatesFromResponse = JSON.parse(res).predicates.map(
             (item) => item["_predicate/name"]
           );
           let predicatesWithID = ["_id", ...predicatesFromResponse];
-         
+
           this.setState({
             showCollectionDetails: !this.state.showCollectionDetails,
             moreDetails: moreDetails,
