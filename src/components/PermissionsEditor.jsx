@@ -38,7 +38,7 @@ class Editor extends Component {
       .then((res) => res.json || res)
       .then((res) => res.result || res)
       .then((res) => {
-        console.log("response", res)
+       
         this.props.fullRefresh(res);
         this.setState({resultsFromTransaction: JSON.stringify(res, null, 2)});
       })
@@ -49,7 +49,6 @@ class Editor extends Component {
   };
 
   render() {
-    console.log("state in Permissions editor", this.state)
     return (
       <FormGroup>
         <div style={{ margin: "5px 40px 0px 20px" }}>

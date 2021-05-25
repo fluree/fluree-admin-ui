@@ -377,9 +377,7 @@ class PermissionExplorerByType extends Component {
     const results = this.props.results;
     const typeData = get(this.props, "_".concat(type));
  
-    //return possibility 1
     if (typeData.length === 0) {
-      //this will only be true for for user since every ledger is created with default role, auth and rule
       return (
         <div>
           <div
@@ -487,7 +485,7 @@ class PermissionExplorerByType extends Component {
                   auth={_auth}
                   fullRefresh={this.fullRefresh}
                   component={"addAuth"}
-                  //setValueFromTnx={this.props.setValueFromTnx}
+                
                   nestedRoles={true}
                 />
               );
@@ -524,8 +522,7 @@ class PermissionExplorerByType extends Component {
                   roles={_role}
                   _db={_db}
                   valueFromTnx={this.props.valueFromTnx}
-                  //setValueFromTnx={this.props.setValueFromTnx}
-                  fullRefresh={this.fullRefresh}
+            fullRefresh={this.fullRefresh}
                   fullRefresh={this.fullRefresh}
                   nestedRoles={true}
                   nestedAuth={true}
@@ -538,7 +535,6 @@ class PermissionExplorerByType extends Component {
     );
 
 
-    //return possibility 2
     return (
       <div>
         {this.state.loading ? (
