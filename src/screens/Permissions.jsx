@@ -376,8 +376,10 @@ class PermissionExplorerByType extends Component {
 
     const results = this.props.results;
     const typeData = get(this.props, "_".concat(type));
-  
+ 
+    //return possibility 1
     if (typeData.length === 0) {
+      //this will only be true for for user since every ledger is created with default role, auth and rule
       return (
         <div>
           <div
@@ -444,6 +446,8 @@ class PermissionExplorerByType extends Component {
                       _db={_db}
                       fullRefresh={this.fullRefresh}
                       results={results}
+                      nestedRoles={true}
+                      nestedAuth={true}
                     />
                   );
               }
@@ -483,7 +487,7 @@ class PermissionExplorerByType extends Component {
                   auth={_auth}
                   fullRefresh={this.fullRefresh}
                   component={"addAuth"}
-                  setValueFromTnx={this.props.setValueFromTnx}
+                  //setValueFromTnx={this.props.setValueFromTnx}
                   nestedRoles={true}
                 />
               );
@@ -520,7 +524,7 @@ class PermissionExplorerByType extends Component {
                   roles={_role}
                   _db={_db}
                   valueFromTnx={this.props.valueFromTnx}
-                  setValueFromTnx={this.props.setValueFromTnx}
+                  //setValueFromTnx={this.props.setValueFromTnx}
                   fullRefresh={this.fullRefresh}
                   fullRefresh={this.fullRefresh}
                   nestedRoles={true}
@@ -533,13 +537,24 @@ class PermissionExplorerByType extends Component {
       </DropdownButton>
     );
 
+
+    //return possibility 2
     return (
       <div>
         {this.state.loading ? (
           <div className="loading1"> Loading... </div>
         ) : null}
+
+        {/* (Permissions) Header for Permissions by type - has Delete button to the right */}
         <div className="row mt20 border-top-light-gray">
           <div className="col-sm-9 mt20">
+            {/* (Permissions)  Creating new enties from here doesn't break AdminUI;
+              However, only create new user produces results in transaction editor and 
+              the create new user Modal doesn't allow you to creating new roles, auth or rules
+              but rather choose exsisting ones.
+               
+              
+            */}
             <div className="text-center">
               {/* Select the specific User/Auth/Role/Rule to examine */}
               <div className="mt20">
@@ -640,6 +655,8 @@ class PermissionExplorerByType extends Component {
                       authAuthority={authAuthority}
                       _db={_db}
                       fullRefresh={this.fullRefresh}
+                      nestedAuth={true}
+                      nestedRoles={true}
                     />
                   );
                 case "role":
@@ -668,6 +685,7 @@ class PermissionExplorerByType extends Component {
                       _db={_db}
                       _fn={_fn}
                       fullRefresh={this.fullRefresh}
+                      nestedRules={true}
                     />
                   );
                 case "rule":
@@ -752,6 +770,8 @@ class PermissionExplorerByType extends Component {
                       valueFromTnx={this.props.valueFromTnx}
                       setValueFromTnx={setValueFromTnx}
                       fullRefresh={this.fullRefresh}
+                      nestedRoles = {true}
+                      nestedAuth = {true}
                     />
                   );
               }

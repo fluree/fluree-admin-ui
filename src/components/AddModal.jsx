@@ -42,6 +42,7 @@ class AddModal extends Component {
   }
 
   render() {
+    console.log("AddModal Props", this.props)
     return (
       <div>
         {this.props.component === "deleteRole" ||
@@ -61,7 +62,7 @@ class AddModal extends Component {
             }}
             onClick={() => {
               this.handleShow();
-              this.props.setValueFromTnx("");
+             
             }}
           >
             {(() => {

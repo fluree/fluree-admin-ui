@@ -8,7 +8,7 @@ import { flureeFetch } from "../flureeFetch";
 class Editor extends Component {
   state = {
     value: JSON.stringify(this.props.value, null, 2),
-    valueFromTnx: JSON.stringify(this.props.valueFromTnx, null, 2),
+    resultsFromTransaction: "Nothing transacted yet little fellow",
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -38,8 +38,9 @@ class Editor extends Component {
       .then((res) => res.json || res)
       .then((res) => res.result || res)
       .then((res) => {
+        console.log("response", res)
         this.props.fullRefresh(res);
-        this.props.setValueFromTnx(JSON.stringify(res, null, 2));
+        this.setState({resultsFromTransaction: JSON.stringify(res, null, 2)});
       })
 
       .catch((error) => {
@@ -48,6 +49,7 @@ class Editor extends Component {
   };
 
   render() {
+    console.log("state in Permissions editor", this.state)
     return (
       <FormGroup>
         <div style={{ margin: "5px 40px 0px 20px" }}>
@@ -112,7 +114,7 @@ class Editor extends Component {
               width={"90%"}
               height={"150px"}
               highlightActiveLine={true}
-              value={this.props.valueFromTnx}
+              value={this.state.resultsFromTransaction}
               editorProps={{ $blockScrolling: true }}
               setOptions={{
                 showLineNumbers: true,
