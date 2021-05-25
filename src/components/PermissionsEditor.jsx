@@ -8,7 +8,7 @@ import { flureeFetch } from "../flureeFetch";
 class Editor extends Component {
   state = {
     value: JSON.stringify(this.props.value, null, 2),
-    resultsFromTransaction: "Nothing transacted yet little fellow",
+    resultsFromTransaction: "",
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
