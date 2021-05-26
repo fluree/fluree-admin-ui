@@ -24,7 +24,7 @@ import { RemoveUserModal } from "../components/DeleteAndArchive";
 export class NewDatabaseModal extends Component {
   state = {
     id: "",
-    error: null 
+    error: null,
   };
 
   refreshForm = () => {
@@ -110,8 +110,9 @@ export class NewDatabaseModal extends Component {
             <Fragment>
               <p>
                 <b>Note:</b> A Ledger Id uniquely identifies a ledger within a
-                network. A Ledger Id begins with the network name (e.g myNetwork) followed by a
-                forward slash "/" and the Ledger name (e.g myLedger).
+                network. A Ledger Id begins with the network name (e.g
+                myNetwork) followed by a forward slash "/" and the Ledger name
+                (e.g myLedger).
                 <br></br>
               </p>
               <p>
@@ -373,6 +374,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
     this.setState({
       confirmDeletion: e.target.value,
     });
+    console.log(this.state.confirmDeletion);
   };
   handleChangeForConfirmPrivateKeyTextbox = (e) => {
     this.setState({
@@ -396,7 +398,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
         return true;
       }
     } else {
-      if (this.state.confirmDeletion === "confirm") {
+      if (this.state.confirmDeletion === "CONFIRM") {
         return false;
       } else {
         return true;
@@ -406,8 +408,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
   render() {
     const { confirmDatabaseDeletionModalToggle, db, ip } = this.props;
     const { openApiServer } = this.props._db;
-    console.log("openApiServer", openApiServer)
-    console.log(this.props._db);
+
     return (
       <Fragment>
         <Draggable enableUserSelectHack={false}>
@@ -424,15 +425,15 @@ export class ConfirmDatabaseDeletionModal extends Component {
             <Form onSubmit={(e) => this.deleteDB(e, db, ip)}>
               {openApiServer && (
                 <Modal.Body>
-                  <p>Please, enter "confirm" to DELETE ledger.</p>
+                  <p>Please, type CONFIRM to delete this ledger.</p>
                   <FormGroup>
                     <FormControl
                       onMouseDown={(e) => {
                         e.stopPropagation();
                       }}
                       type="text"
-                      value={this.state.confirmDeletion} 
-                      placeholder="Enter 'confirm' to DELETE ledger"
+                      value={this.state.confirmDeletion}
+                      placeholder="Type CONFIRM to delete ledger"
                       onChange={(e) =>
                         this.handleChangeForConfirmDeleteTextbox(e)
                       }
@@ -457,7 +458,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
                       }}
                       type="text"
                       value={this.state.confirmDeletionAuthID}
-                      placeholder="Enter 'AuthID' to DELETE ledger"
+                      placeholder="Type your AuthID to delete this ledger"
                       onChange={(e) =>
                         this.handleChangeForConfirmAuthIDTextbox(e)
                       }
@@ -471,7 +472,7 @@ export class ConfirmDatabaseDeletionModal extends Component {
                       }}
                       type="text"
                       value={this.state.confirmDeletionPrivateKey}
-                      placeholder="Enter 'Private Key' to DELETE ledger"
+                      placeholder="Type your Private Key to delete ledger"
                       onChange={(e) =>
                         this.handleChangeForConfirmPrivateKeyTextbox(e)
                       }
@@ -509,7 +510,6 @@ export class ConfirmDatabaseDeletionModal extends Component {
   }
 }
 
-
 export class Database extends Component {
   state = {
     loading: false,
@@ -546,27 +546,27 @@ export class Database extends Component {
             {/* &nbsp; */}
             <span style={{ display: "flex", direction: "row" }}>
               <span>{idShort}</span>
+              <span
+                class="snap-shot-delete-wrapper"
+                style={{ marginLeft: "auto" }}
+              >
                 <span
-                  class="snap-shot-delete-wrapper"
-                  style={{ marginLeft: "auto" }}
+                  style={{
+                    padding: "4px 10px",
+                    cursor: "pointer",
+                    borderRadius: "32px",
+                    marginLeft: "10px",
+                  }}
+                  className="danger"
+                  onClick={() => this.confirmDatabaseDeletionModalToggle()}
                 >
-                  <span
-                    style={{
-                      padding: "4px 10px",
-                      cursor: "pointer",
-                      borderRadius: "32px",
-                      marginLeft: "10px",
-                    }}
-                    className="danger"
-                    onClick={() => this.confirmDatabaseDeletionModalToggle()}
-                  >
-                    <i
-                      className="fas fa-trash hidden-xs"
-                      aria-hidden="true"
-                      style={{ padding: "5px" }}
-                    ></i>
-                  </span>{" "}
-                </span>
+                  <i
+                    className="fas fa-trash hidden-xs"
+                    aria-hidden="true"
+                    style={{ padding: "5px" }}
+                  ></i>
+                </span>{" "}
+              </span>
             </span>
           </td>
 
@@ -803,7 +803,6 @@ class AccountInfo extends Component {
     }
   }
 
-
   displayError(error) {
     this.setState({ error: error });
   }
@@ -1025,11 +1024,12 @@ class AccountInfo extends Component {
           />
         ) : null}
 
-        <div 
-        style={{
-          width: "100%",
-          padding: "1% 3%"
-        }}>
+        <div
+          style={{
+            width: "100%",
+            padding: "1% 3%",
+          }}
+        >
           <h3
             style={{
               alignItems: "center",
@@ -1050,7 +1050,7 @@ class AccountInfo extends Component {
                 className="table-container network-page-table-container"
                 style={{
                   maxHeight: "585px",
-                  width: "100%"
+                  width: "100%",
                 }}
               >
                 <table

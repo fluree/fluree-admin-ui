@@ -10,12 +10,20 @@ import {
 } from "react-bootstrap";
 
 class ConfigModal extends React.Component {
-  state = {};
+  state = {
+    show: this.props.showConfig
+  };
 
+  handleClose = () => {
+    this.setState({ show: false });
+    this.props.setShowConfig()
+  };
+
+ 
   componentDidMount() {
     if (this.props._db) {
       let { ip, openApiServer, defaultPrivateKey } = this.props._db;
-     
+
       this.setState({
         ip: ip,
         openApiServer: openApiServer,
@@ -47,10 +55,11 @@ class ConfigModal extends React.Component {
       message =
         error.message || error.error || "No Message Provided with Error.";
     }
+  
     return (
       <div className="static-modal">
-        <Modal.Dialog>
-          <Modal.Header>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
             <Modal.Title>
               {this.props.error ? <h1>{message}</h1> : <h1>Config Settings</h1>}
             </Modal.Title>
@@ -105,7 +114,10 @@ class ConfigModal extends React.Component {
                 </FormGroup>
               )}
               <Button
-                disabled={this.state.openApiServer === false && this.getValidateDefaultPrivateKey()}
+                disabled={
+                  this.state.openApiServer === false &&
+                  this.getValidateDefaultPrivateKey()
+                }
                 className="buttonPurple"
                 type="submit"
               >
@@ -113,7 +125,7 @@ class ConfigModal extends React.Component {
               </Button>
             </Form>
           </Modal.Body>
-        </Modal.Dialog>
+        </Modal>
       </div>
     );
   }
