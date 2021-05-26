@@ -196,7 +196,6 @@ class AddNewUser extends Component {
         userlessAuth.push(auth);
       }
     });
-
     return (
       <div className="text-gray-light">
         {this.state.showDeleteRoleModal ? (
@@ -484,8 +483,7 @@ class AddNewUser extends Component {
           <FormGroup controlId="edit-delete-user">
             <Editor
               value={this.state.fullTransaction}
-              setValueFromTnx={this.props.setValueFromTnx}
-              valueFromTnx={this.props.valueFromTnx}
+          
               handleClose={handleClose}
               _db={_db}
               fullRefresh={fullRefresh}
