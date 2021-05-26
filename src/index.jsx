@@ -33,7 +33,7 @@ const Permissions = asyncComponent(() => import("./screens/Permissions"));
 const Import = asyncComponent(() => import("./screens/Import"));
 
 class Wrapper extends React.Component {
-  state = { adminUIVersion: version };
+  state = { adminUIVersion: version};
 
   componentDidMount() {
     const newState = {};
@@ -276,6 +276,12 @@ class Wrapper extends React.Component {
     });
   }
 
+  setShowConfig () {
+    this.setState({
+      showConfig: false
+    })
+  }
+
   render() {
     const dbs = this.state.dbs;
 
@@ -294,16 +300,20 @@ class Wrapper extends React.Component {
       defaultPrivateKey: this.state.defaultPrivateKey,
       openApiServer: this.state.openApiServer,
       networkData: this.state.networkData,
+      showConfig: this.state.showConfig
     };
 
     if (dbs === undefined) {
       return (
         <div>
           {this.state.showConfig ? (
+            
             <ConfigModal
               _db={_db}
               error={this.state.error}
               setConfig={this.setConfig.bind(this)}
+              showConfig={true}
+              setShowConfig={this.setShowConfig.bind(this)}
             />
           ) : (
             "Loading...."
@@ -348,29 +358,32 @@ class Wrapper extends React.Component {
               </p>
             </div>
           ) : null}
-          <div className="row"
+          <div
+            className="row"
             style={{
               height: "100vh",
               padding: "0px",
-              
+
               margin: "0",
-            }}>
+            }}
+          >
             <div
               className="col-md-2 col-xs-1 col-xl-1"
               style={{
                 // height: "100vh",
                 padding: "0px",
-                
+
                 margin: "0",
               }}
             >
-              <div 
-              style={{
-                height: "100vh",
-                padding: "0px",
-                width: "100%",
-                margin: "0",
-              }}>
+              <div
+                style={{
+                  height: "100vh",
+                  padding: "0px",
+                  width: "100%",
+                  margin: "0",
+                }}
+              >
                 <Sidebar
                   _db={_db}
                   openApiServer={this.state.openApiServer}
@@ -378,7 +391,6 @@ class Wrapper extends React.Component {
                   style={{ width: "100%", margin: "0" }}
                 />
               </div>
-            
             </div>
 
             {this.state.error ? (
@@ -388,19 +400,25 @@ class Wrapper extends React.Component {
               />
             ) : null}
             {this.state.showConfig ? (
+              
               <ConfigModal
                 _db={_db}
                 error={this.state.error}
                 setConfig={this.setConfig.bind(this)}
+                showConfig={this.state.showConfig}
+                setShowConfig={this.setShowConfig.bind(this)}
               />
             ) : null}
 
             <div
-
               className="col-md-10 col-xs-11 col-xl-11"
-              style={{ paddingLeft: "20px", height: "100%", overflowX: "hidden" }}
+              style={{
+                paddingLeft: "20px",
+                height: "100%",
+                overflowX: "hidden",
+              }}
             >
-              <div style={{ width: "100%", height: "100vh"}}>
+              <div style={{ width: "100%", height: "100vh" }}>
                 <div style={{ padding: "0px" }}>
                   <Header _db={_db} {...this.props} />
                 </div>
@@ -505,7 +523,6 @@ class Wrapper extends React.Component {
               </div>
             </div>
           </div>
-          
         </div>
       );
     }

@@ -61,7 +61,6 @@ class AddModal extends Component {
             }}
             onClick={() => {
               this.handleShow();
-              this.props.setValueFromTnx("");
             }}
           >
             {(() => {
