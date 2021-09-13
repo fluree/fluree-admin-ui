@@ -244,6 +244,17 @@ class Transact extends React.Component {
           time: time,
           status: status,
         });
+         if (JSON.stringify(formattedResult).length > 1000000) {
+           let warningMessage = JSON.stringify(
+             "Results from last transactions/query was to large and not saved locally. Run query again to view results.",
+
+             null,
+             2
+           );
+           localStorage.setItem("lastResults", warningMessage);
+         } else {
+           localStorage.setItem("lastResults", formattedResult);
+         }
       })
       .catch((error) => {
         const { displayError } = this.props._db;

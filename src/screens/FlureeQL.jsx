@@ -305,7 +305,7 @@ class FlureeQL extends React.Component {
         });
         if (JSON.stringify(formattedResult).length > 1000000) {
           let warningMessage = JSON.stringify(
-            "Results from last transactions/query were to large and not saved locally. Run query again to view results.",
+            "Results from last transactions/query was to large and not saved locally. Run query again to view results.",
 
             null,
             2
