@@ -72,7 +72,7 @@ class FlureeQL extends React.Component {
     //let { action, txParam, queryParam } = this.checkURLAndOverrideParam();
 
     const historyOpenStatus = JSON.parse(localStorage.getItem("historyOpen"));
-    const lastResults = localStorage.getItem("lastResults")
+    const lastResults = localStorage.getItem("lastResults");
     newState["historyOpen"] = historyOpenStatus ? true : false;
     newState["results"] = lastResults;
     this.setState(newState);
@@ -246,10 +246,8 @@ class FlureeQL extends React.Component {
         null,
         2
       );
-      localStorage.setItem("lastResults",  warningMessage)
+      localStorage.setItem("lastResults", warningMessage);
     }
-
-  
 
     promise
       .then((res) => {
@@ -304,15 +302,25 @@ class FlureeQL extends React.Component {
           time: time,
           status: status,
         });
-        localStorage.setItem("lastResults", formattedResult);
+        if (JSON.stringify(formattedResult).length > 1000000) {
+          let warningMessage = JSON.stringify(
+            "Results from last transactions/query were too large and not saved locally. Run query again to view results.",
+
+            null,
+            2
+          );
+          localStorage.setItem("lastResults", warningMessage);
+        } else {
+          localStorage.setItem("lastResults", formattedResult);
+        }
       })
       .catch((error) => {
         const { displayError } = this.props._db;
         const result = error.json || error;
-        
+
         var formattedResult = JSON.stringify(result, null, 2);
         this.setState({ loading: false, results: formattedResult });
-        
+
         localStorage.setItem("lastResults", formattedResult);
         displayError(result);
       });
@@ -321,7 +329,7 @@ class FlureeQL extends React.Component {
   };
 
   invoke = () => {
-    let { action, queryParam, txParam, history, queryType } = this.state;
+    let { action, queryParam, history, queryType } = this.state;
     const param = queryParam;
     let endpoint;
     if (action === "query" && queryType) {
@@ -699,7 +707,13 @@ class FlureeQL extends React.Component {
             className={historyOpen ? "col-xs-9" : "row"}
             style={{ padding: "0" }}
           >
-            <div style={{ position: "relative", height: `${availHeight}px`, width: "100%" }}>
+            <div
+              style={{
+                position: "relative",
+                height: `${availHeight}px`,
+                width: "100%",
+              }}
+            >
               <SplitPane
                 split="vertical"
                 minSize="50%"
@@ -710,7 +724,7 @@ class FlureeQL extends React.Component {
                   height: `${availHeight}px`,
                 }}
                 style={{
-                  marginLeft: "3%"
+                  marginLeft: "3%",
                 }}
                 defaultSize={parseInt(localStorage.getItem("splitPos"), 10)}
                 onChange={(size) => localStorage.setItem("splitPos", size)}

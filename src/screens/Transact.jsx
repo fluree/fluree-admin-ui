@@ -244,6 +244,17 @@ class Transact extends React.Component {
           time: time,
           status: status,
         });
+        if (JSON.stringify(formattedResult).length > 1000000) {
+          let warningMessage = JSON.stringify(
+            "Results from last transactions/query were too large and not saved locally. Run query again to view results.",
+
+            null,
+            2
+          );
+          localStorage.setItem("lastResults", warningMessage);
+        } else {
+          localStorage.setItem("lastResults", formattedResult);
+        }
       })
       .catch((error) => {
         const { displayError } = this.props._db;
@@ -293,12 +304,11 @@ class Transact extends React.Component {
     this.handleResponse(res, action, db, history, param, queryType);
   };
 
-  
-    loadHistoryItem(item) {
-      let newState = {
-        action: item.action,
-        txParam: item.action === "transact" ? item.param : this.state.txParam,
-      };
+  loadHistoryItem(item) {
+    let newState = {
+      action: item.action,
+      txParam: item.action === "transact" ? item.param : this.state.txParam,
+    };
 
     if (item.type) {
       newState["queryType"] = item.type;
@@ -364,8 +374,7 @@ class Transact extends React.Component {
 
     const param = this.state.txParam;
     const isLoading = this.state.loading || this.props._db.loading;
-    
-    
+
     return (
       <div style={{ width: "100%" }}>
         {this.state.generateKeysModal ? (
