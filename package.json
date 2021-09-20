@@ -1,6 +1,6 @@
 {
   "name": "@fluree/admin-ui",
-  "version": "1.0.0-rc6",
+  "version": "1.0.0-rc7",
   "private": false,
   "files": [
     "build"
