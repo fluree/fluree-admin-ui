@@ -15,7 +15,6 @@ import "brace/theme/xcode";
 import "brace/mode/sparql";
 import hopscotch from "hopscotch";
 import { signQuery } from "@fluree/crypto-utils";
-import { getHost } from "../components/SignCommand";
 
 import { GenerateKeysModal } from "../components/GenerateKeysModal";
 import { History } from "../components/History";
@@ -184,7 +183,6 @@ class FlureeQL extends React.Component {
   getParamsFromProps(props) {
     let sign = props._db.openApiServer ? false : true;
     const privateKey = props._db.defaultPrivateKey || "";
-    const host = getHost(props._db.ip) || "";
     const history = loadHistory(props._db.db, "flureeQL") || [];
     const arrayOfQueryHistory = history.filter((item) => {
       return item.action === "query";
@@ -192,7 +190,6 @@ class FlureeQL extends React.Component {
     const lastItem = getLastHistory(arrayOfQueryHistory) || [];
     const newState = {
       sign: sign,
-      host: host,
       privateKey: privateKey,
       history: history,
       action: "query",
@@ -393,7 +390,6 @@ class FlureeQL extends React.Component {
       queryType,
       action,
       history,
-      host,
     } = this.state;
     const { ip, db } = this.props._db;
     const fullDb = db.split("/");
@@ -421,7 +417,6 @@ class FlureeQL extends React.Component {
       privateKey,
       parsedParam,
       queryType.toLowerCase(),
-      host,
       db
     );
 
@@ -561,23 +556,6 @@ class FlureeQL extends React.Component {
                   onChange={(e) =>
                     this.changeState("privateKey", e.target.value)
                   }
-                />
-              </div>
-              <div
-                style={{
-                  width: "61%",
-                  display: "inline-block",
-                  paddingLeft: "20px",
-                  paddingTop: "20px",
-                }}
-              >
-                <h3 className="mb10">Host: </h3>
-                <FormControl
-                  style={{ borderRadius: "20px" }}
-                  type="text"
-                  name="type"
-                  value={this.state.host}
-                  onChange={(e) => this.changeState("host", e.target.value)}
                 />
               </div>
               <Button

@@ -9,7 +9,6 @@ import "brace/theme/xcode";
 import "brace/mode/sparql";
 import hopscotch from "hopscotch";
 import { signQuery } from "@fluree/crypto-utils";
-import { getHost } from "../components/SignCommand";
 
 import { GenerateKeysModal } from "../components/GenerateKeysModal";
 import { History } from "../components/History";
@@ -139,7 +138,6 @@ class Transact extends React.Component {
     let sign = props._db.openApiServer ? false : true;
 
     const privateKey = props._db.defaultPrivateKey || "";
-    const host = getHost(props._db.ip) || "";
     const history = loadHistory(props._db.db, "flureeQL", "transact") || [];
     // const privateKey = props._db.defaultPrivateKey || "";
 
@@ -149,7 +147,6 @@ class Transact extends React.Component {
     const lastItem = getLastHistory(arrayOfTransactHistory) || {};
     const newState = {
       sign: sign,
-      host: host,
       privateKey: privateKey,
       history: history,
       action: "transact",

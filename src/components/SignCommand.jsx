@@ -17,12 +17,6 @@ import { Editor } from "../screens/FlureeQL";
 
 import { signQuery, signTransaction } from "@fluree/crypto-utils";
 
-export function getHost(href) {
-  var l = document.createElement("a");
-  l.href = href;
-  return l.hostname;
-}
-
 class SignCommand extends React.Component {
   state = {
     results: "",
@@ -54,12 +48,10 @@ class SignCommand extends React.Component {
       queryPromise = flureeFetch(qOpts);
     } else {
       const stringParam = JSON.stringify(parsedParam);
-      const host = getHost(ip);
       const { headers, body } = signQuery(
         defaultPrivateKey,
         stringParam,
         "query",
-        host,
         db
       );
 
@@ -163,14 +155,10 @@ class SignCommand extends React.Component {
           return flureeFetch(qOpenOpts);
         } else {
           const stringParam = JSON.stringify(param);
-          const host = ip.includes("localhost")
-            ? "localhost"
-            : psl.parse(ip).domain;
           const { headers, body } = signQuery(
             defaultPrivateKey,
             stringParam,
             "query",
-            host,
             db
           );
 
