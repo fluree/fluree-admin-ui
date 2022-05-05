@@ -30,7 +30,7 @@ function parseJSON(response) {
   });
 }
 
-function fullEndpoint(endpoint, network, db, body, ip) {
+function fullEndpoint(endpoint, network, ledger, body, ip) {
   const endpointInfix = "fdb";
 
   const locatedEndpoint = [
@@ -55,14 +55,14 @@ function fullEndpoint(endpoint, network, db, body, ip) {
     if (endpoint === "nw-state" || endpoint === "version") {
       return `${startURI}/${endpointInfix}/${endpoint}`;
     } else {
-      return `${startURI}/${endpointInfix}/${network}/${db}/${endpoint}`;
+      return `${startURI}/${endpointInfix}/${network}/${ledger}/${endpoint}`;
     }
   }
 
   const prefixedEndpoints = [
-    "dbs",
+    "ledgers",
     "action",
-    "new-db",
+    "new-ledger",
     "accounts",
     "signin",
     "health",
@@ -70,7 +70,7 @@ function fullEndpoint(endpoint, network, db, body, ip) {
     "new-pw",
     "reset-pw",
     "activate-account",
-    "delete-db",
+    "delete-ledger",
   ].includes(endpoint);
 
   if (prefixedEndpoints) {
@@ -89,8 +89,9 @@ function fullEndpoint(endpoint, network, db, body, ip) {
 
 const flureeFetch = (opts) => {
   
-  const { ip, body, auth, network, db, endpoint, headers, noRedirect } = opts;
-  const fullUri = fullEndpoint(endpoint, network, db, body, ip);
+  const { ip, body, auth, network, db, ledger, endpoint, headers, noRedirect } = opts;
+  let theLedger = ledger || db; // TODO: Remove db support
+  const fullUri = fullEndpoint(endpoint, network, theLedger, body, ip);
 
   const finalHeaders = headers
     ? headers

@@ -150,7 +150,7 @@ class SparQL extends React.Component {
       ip: ip,
       endpoint: "sparql",
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: parsedParam,
       auth: token,
     };

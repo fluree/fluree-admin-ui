@@ -293,7 +293,7 @@ class Transact extends React.Component {
       auth: token,
       network: fullDb[0],
       endpoint: endpoint,
-      db: fullDb[1],
+      ledger: fullDb[1],
     };
 
     const res = flureeFetch(opts);

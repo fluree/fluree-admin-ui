@@ -61,7 +61,7 @@ class Schema extends Component {
       endpoint: "multi-query",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: this.schemaQuery,
       auth: token,
     };
@@ -141,7 +141,7 @@ class Schema extends Component {
       endpoint: "multi-query",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };
