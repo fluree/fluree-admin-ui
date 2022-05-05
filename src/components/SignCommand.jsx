@@ -41,7 +41,7 @@ class SignCommand extends React.Component {
         endpoint: "query",
         ip: ip,
         network: fullDb[0],
-        db: fullDb[1],
+        ledger: fullDb[1],
         body: parsedParam,
         auth: token,
       };
@@ -59,7 +59,7 @@ class SignCommand extends React.Component {
         endpoint: "query",
         ip: ip,
         network: fullDb[0],
-        db: fullDb[1],
+        ledger: fullDb[1],
         body: JSON.parse(body),
         headers: headers,
         auth: token,
@@ -130,7 +130,7 @@ class SignCommand extends React.Component {
       body: body,
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       auth: token,
     };
 
@@ -147,7 +147,7 @@ class SignCommand extends React.Component {
           const qOpenOpts = {
             ip: ip,
             network: fullDb[0],
-            db: fullDb[1],
+            ledger: fullDb[1],
             endpoint: "query",
             body: param,
             auth: token,
@@ -165,7 +165,7 @@ class SignCommand extends React.Component {
           const qClosedOpts = {
             ip: ip,
             network: fullDb[0],
-            db: fullDb[1],
+            ledger: fullDb[1],
             endpoint: "query",
             body: JSON.parse(body),
             headers: headers,

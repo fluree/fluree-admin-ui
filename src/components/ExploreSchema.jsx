@@ -24,7 +24,7 @@ class Schema extends React.Component {
       endpoint: "graphql",
       body: { query },
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       auth: token,
     };
     return flureeFetch(opts)

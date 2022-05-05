@@ -202,7 +202,7 @@ export default class ExploreDB extends Component {
       endpoint: "multi-query",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: this.schemaQuery,
       auth: token,
     };
@@ -286,7 +286,7 @@ export default class ExploreDB extends Component {
       endpoint: "ledger-stats",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       auth: token,
     };
 
@@ -425,7 +425,7 @@ export default class ExploreDB extends Component {
       endpoint: "history",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };
@@ -481,7 +481,7 @@ export default class ExploreDB extends Component {
       endpoint: "history",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };
@@ -546,7 +546,7 @@ export default class ExploreDB extends Component {
       endpoint: "history",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };
@@ -613,7 +613,7 @@ export default class ExploreDB extends Component {
       endpoint: "multi-query",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };
@@ -1047,7 +1047,7 @@ export default class ExploreDB extends Component {
       endpoint: "block-range-with-txn",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };
@@ -1120,7 +1120,7 @@ export default class ExploreDB extends Component {
       endpoint: "block-range-with-txn",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: schemaQuery,
       auth: token,
     };

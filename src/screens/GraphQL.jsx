@@ -23,7 +23,7 @@ export default class GraphQLQuery extends React.Component {
       auth: this.props._db.token,
       network: fullDb[0],
       endpoint: "graphql",
-      db: fullDb[1],
+      ledger: fullDb[1],
     };
 
     return flureeFetch(opts)

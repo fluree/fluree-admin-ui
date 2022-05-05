@@ -81,7 +81,7 @@ class PermissionExplorer extends Component {
       endpoint: "multi-query",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: this.permissionQuery,
       auth: token,
     };
@@ -297,7 +297,7 @@ class PermissionExplorerByType extends Component {
       endpoint: "transact",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: transaction,
       auth: token,
     };

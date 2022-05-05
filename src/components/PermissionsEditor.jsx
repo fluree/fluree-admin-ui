@@ -29,7 +29,7 @@ class Editor extends Component {
       endpoint: "transact",
       ip: ip,
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: transaction,
       auth: token,
     };

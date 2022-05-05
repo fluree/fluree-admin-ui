@@ -358,7 +358,7 @@ class Import extends React.Component {
       ip: ip,
       endpoint: "multi-query",
       network: fullDb[0],
-      db: fullDb[1],
+      ledger: fullDb[1],
       body: this.schemaQuery,
       auth: token,
     };

@@ -58,9 +58,9 @@ export class NewDatabaseModal extends Component {
         ? Number(this.state.blockNumber)
         : null;
 
-    const tx = { "db/id": this.state.id };
+    const tx = { "ledger/id": this.state.id };
 
-    const endpoint = "new-db";
+    const endpoint = "new-ledger";
     const { ip, token } = this.props._db;
     const opts = {
       ip: ip,
@@ -309,10 +309,10 @@ export class ConfirmDatabaseDeletionModal extends Component {
     e.preventDefault();
     let opts;
     const tx = {
-      "db/id": db,
+      "ledger/id": db,
     };
 
-    const endpoint = "delete-db";
+    const endpoint = "delete-ledger";
     const refreshDbs = this.props._db.refreshDbs;
     const request = (options) => {
       flureeFetch(options)
@@ -349,8 +349,8 @@ export class ConfirmDatabaseDeletionModal extends Component {
       const baseUri = gateway(ip) || "";
       const { headers, body } = signRequest(
         "POST",
-        `${baseUri}/fdb/delete-db`,
-        JSON.stringify({ "db/id": db, auth: authId }),
+        `${baseUri}/fdb/delete-ledger`,
+        JSON.stringify({ "ledger/id": db, auth: authId }),
         privateKey,
         authId
       );
@@ -816,7 +816,7 @@ class AccountInfo extends Component {
         endpoint: "ledger-stats",
         ip: ip,
         network: fullDb[0],
-        db: fullDb[1],
+        ledger: fullDb[1],
         auth: token,
       };
       databaseInfoRequests.push(
