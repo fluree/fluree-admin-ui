@@ -90,7 +90,7 @@ function fullEndpoint(endpoint, network, ledger, body, ip) {
 const flureeFetch = (opts) => {
   
   const { ip, body, auth, network, db, ledger, endpoint, headers, noRedirect } = opts;
-  let theLedger = ledger || db; // TODO: Remove db support
+  const theLedger = ledger || db; // TODO: Remove db support
   const fullUri = fullEndpoint(endpoint, network, theLedger, body, ip);
 
   const finalHeaders = headers

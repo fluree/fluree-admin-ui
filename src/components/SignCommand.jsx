@@ -142,7 +142,7 @@ class SignCommand extends React.Component {
         let resp = res.json || res;
         resp = resp.result || resp;
         this.props.pushHistory(tx, resp);
-        const param = { select: ["*"], from: ["_tx/id", resp] };
+        const param = { select: ["*"], from: ["_tx/id", resp["id"]] };
         if (openApiServer) {
           const qOpenOpts = {
             ip: ip,
