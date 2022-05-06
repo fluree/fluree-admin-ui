@@ -139,7 +139,6 @@ class Transact extends React.Component {
 
     const privateKey = props._db.defaultPrivateKey || "";
     const history = loadHistory(props._db.db, "flureeQL", "transact") || [];
-    // const privateKey = props._db.defaultPrivateKey || "";
 
     const arrayOfTransactHistory = history.filter((item) => {
       return item.action === "transact";
@@ -494,7 +493,6 @@ class Transact extends React.Component {
                 <SplitPane
                   split="vertical"
                   minSize="50%"
-                  defaultSize="50%"
                   resizerStyle={{
                     width: "9px",
                     cursor: "col-resize",
