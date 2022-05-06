@@ -83,7 +83,7 @@ function fullEndpoint(endpoint, network, ledger, body, ip) {
 
   throw {
     status: 400,
-    message: "Invalid endpoint",
+    message: `Invalid endpoint: ${endpoint}`,
   };
 }
 
