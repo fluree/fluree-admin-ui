@@ -192,7 +192,7 @@ class Wrapper extends React.Component {
   }
 
   getDbs = (ip, auth) => {
-    let opts = { ip: ip, auth: auth, endpoint: "dbs" };
+    let opts = { ip: ip, auth: auth, endpoint: "ledgers" };
     const dbs = flureeFetch(opts);
 
     if (dbs.status >= 400) {
