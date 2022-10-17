@@ -111,13 +111,13 @@ export class NewDatabaseModal extends Component {
               <p>
                 <b>Note:</b> A Ledger Id uniquely identifies a ledger within a
                 network. A Ledger Id begins with the network name (e.g
-                myNetwork) followed by a forward slash "/" and the Ledger name
-                (e.g myLedger).
+                my-network) followed by a forward slash "/" and the Ledger name
+                (e.g my-ledger). Only lower-case letters, numbers, and hyphens (-) are aloud.
                 <br></br>
               </p>
               <p>
                 <em>
-                  <b>A Ledger Id example:</b> myNetwork/myLedger
+                  <b>A Ledger Id example:</b> my-network/my-ledger
                 </em>
               </p>
               <Form onSubmit={this.onGenerate.bind(this)}>
