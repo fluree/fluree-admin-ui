@@ -112,7 +112,7 @@ export class NewDatabaseModal extends Component {
                 <b>Note:</b> A Ledger Id uniquely identifies a ledger within a
                 network. A Ledger Id begins with the network name (e.g
                 my-network) followed by a forward slash "/" and the Ledger name
-                (e.g my-ledger).
+                (e.g my-ledger). Only lower-case letters, numbers, and hyphens (-) are aloud.
                 <br></br>
               </p>
               <p>
